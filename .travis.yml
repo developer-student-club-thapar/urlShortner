@@ -29,3 +29,10 @@ jobs:
       # Need to decide on backend tests
       # script:
       #   - npm test
+      
+    # Linitng tests
+    - language: python
+      install:
+        - pip install pre-commit
+      script:
+        -pre-commit run --all
