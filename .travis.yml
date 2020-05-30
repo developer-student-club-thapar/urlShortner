@@ -26,5 +26,6 @@ jobs:
         - cd backend/
       install:
         - npm install --frozen-lockfile
-      script:
-        - npm test
+      # Need to decide on backend tests
+      # script:
+      #   - npm test
