@@ -17,7 +17,7 @@
 <a> <img src="https://badgen.net/dependabot/developer-student-club-thapar/urlShortner?icon=dependabot" alt="Dependabot Badge"></a>
 
 [![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/developer-student-club-thapar/urlShortner/blob/master/.pre-commit-config.yaml)
-[![License](https://img.shields.io/github/license/developer-student-club-thapar/urlShortner)](https://github.com/developer-student-club-thapar/officialWebsite/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/developer-student-club-thapar/urlShortner)](https://github.com/developer-student-club-thapar/urlShortner/blob/master/LICENSE)
 ![GitHub pull requests by-label](https://img.shields.io/github/issues-pr/developer-student-club-thapar/urlShortner/dependencies?label=Dependencies%20Status)
 
 This is the repo for the URL Shortner Website of DSC Thapar Institute of Engineering and Technology, Patiala , Punjab.
