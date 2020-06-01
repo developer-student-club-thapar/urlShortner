@@ -3,7 +3,6 @@ dist: xenial
 group: edge
 jobs:
     include:
-    
     # Run Frontend JS tests
     - language: node_js
       # The Node version here must be kept in sync with that in `package.json`.
@@ -27,12 +26,10 @@ jobs:
       install:
         - npm install --frozen-lockfile
       # Need to decide on backend tests
-      # script:
-      #   - npm test
-      
+
     # Linitng tests
     - language: python
       install:
         - pip install pre-commit
       script:
-        -pre-commit run --all
+        - pre-commit run --all
