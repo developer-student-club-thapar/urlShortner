@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 //import Link from './Link';
 import { TextField } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import './LinkForm.css';
 
 const classes = makeStyles((theme) => ({
-    root: {
-        '& > *': {
-          margin: theme.spacing(1),
-        },
-      },
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
 }));
 
 //const classes = usStyles();
@@ -37,70 +37,74 @@ const classes = makeStyles((theme) => ({
 ]; */
 
 class LinkForm extends Component {
+  state = {
+    longUrl: '',
+    shortUrl: '',
+  };
 
-    state = {
-      longUrl : '',
-      shortUrl : ''
-    }
-
-    handleChange =(event) => {
+  handleChange = (event) => {
     this.setState({
-      longUrl : event.target.value
+      longUrl: event.target.value,
     });
     // console.log(event.target.value);
+  };
+
+  handleSubmit = async (event) => {
+    // console.log(this.state.longUrl);
+    event.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:5000/api/url/shorten', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          longUrl: this.state.longUrl,
+        }),
+      });
+      const responseData = await response.json();
+
+      this.setState({
+        shortUrl: responseData.shortUrl,
+      });
+      // console.log(responseData)
+    } catch (err) {
+      console.log(err);
     }
+  };
 
-    handleSubmit  = async (event) => {
-      // console.log(this.state.longUrl);
-      event.preventDefault();
+  render() {
+    return (
+      <div className={classes.root}>
+        <form noValidate autoComplete="off">
+          <TextField
+            id="outlined-textarea"
+            // label="Multiline Placeholder"
+            placeholder="Enter the URL"
+            multilinevariant="outlined"
+            label="URL"
+            value={this.state.longUrl}
+            onChange={this.handleChange}
+          />
 
-      try{
-        const response = await fetch('http://localhost:5000/api/url/shorten', {
-          method : 'POST',
-          headers : {
-            'Content-Type' : 'application/json'
-          },
-          body : JSON.stringify({
-            longUrl : this.state.longUrl
-          })
-        });
-        const responseData = await response.json();
-        
-        this.setState({
-          shortUrl : responseData.shortUrl
-        });
-        // console.log(responseData)
-      } catch(err){
-        console.log(err);
-      }
-      }
+          <div>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              onClick={this.handleSubmit}
+            >
+              {' '}
+              Submit{' '}
+            </Button>{' '}
+          </div>
+        </form>
 
-
-
-    render() {
-        return (
-            <div className={ classes.root }>
-
-            <form noValidate autoComplete="off">
-            <TextField
-          id="outlined-textarea"
-          // label="Multiline Placeholder"
-          placeholder="Enter the URL"
-          multilinevariant="outlined"
-          label="URL" value={this.state.longUrl}
-          onChange={this.handleChange}
-        />
-
-
-            
-            <div><Button variant="contained" color="primary" className={ classes.button }  onClick={this.handleSubmit}> Submit </Button> </div>
-            </form>
-            
-            
-            <TextField placeholder="Short Url" value={this.state.shortUrl} />
-            </div>
-        );
-    }
+        <TextField placeholder="Short Url" value={this.state.shortUrl} />
+      </div>
+    );
+  }
 }
 /*<br></br>
 <TextField
@@ -110,7 +114,6 @@ class LinkForm extends Component {
   multilinevariant="outlined"
   label="Domain"
 /> */
-
 
 // class answer extends Component{
 
@@ -125,10 +128,5 @@ class LinkForm extends Component {
 //       )
 //   }
 // }
-
-
-
-
-
 
 export default LinkForm;
