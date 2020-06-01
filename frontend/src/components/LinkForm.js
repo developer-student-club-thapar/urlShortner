@@ -37,6 +37,46 @@ const classes = makeStyles((theme) => ({
 ]; */
 
 class LinkForm extends Component {
+
+    state = {
+      longUrl : '',
+      shortUrl : ''
+    }
+
+    handleChange =(event) => {
+    this.setState({
+      longUrl : event.target.value
+    });
+    // console.log(event.target.value);
+    }
+
+    handleSubmit  = async (event) => {
+      // console.log(this.state.longUrl);
+      event.preventDefault();
+
+      try{
+        const response = await fetch('http://localhost:5000/api/url/shorten', {
+          method : 'POST',
+          headers : {
+            'Content-Type' : 'application/json'
+          },
+          body : JSON.stringify({
+            longUrl : this.state.longUrl
+          })
+        });
+        const responseData = await response.json();
+        
+        this.setState({
+          shortUrl : responseData.shortUrl
+        });
+        // console.log(responseData)
+      } catch(err){
+        console.log(err);
+      }
+      }
+
+
+
     render() {
         return (
             <div className={ classes.root }>
@@ -44,15 +84,20 @@ class LinkForm extends Component {
             <form noValidate autoComplete="off">
             <TextField
           id="outlined-textarea"
-          label="Multiline Placeholder"
+          // label="Multiline Placeholder"
           placeholder="Enter the URL"
           multilinevariant="outlined"
-          label="URL"
+          label="URL" value={this.state.longUrl}
+          onChange={this.handleChange}
         />
 
 
+            
+            <div><Button variant="contained" color="primary" className={ classes.button }  onClick={this.handleSubmit}> Submit </Button> </div>
             </form>
-            <div><Button variant="contained" color="primary" className={ classes.button }> Submit </Button> </div>
+            
+            
+            <TextField placeholder="Short Url" value={this.state.shortUrl} />
             </div>
         );
     }
@@ -65,4 +110,25 @@ class LinkForm extends Component {
   multilinevariant="outlined"
   label="Domain"
 /> */
+
+
+// class answer extends Component{
+
+//   state = {
+//       shortUrl : ''
+//     }
+
+//   render() {
+//     return (
+
+//         <input placeholder="ans" value={this.state.shortUrl} />
+//       )
+//   }
+// }
+
+
+
+
+
+
 export default LinkForm;
