@@ -4,9 +4,9 @@
   "private": true,
   "engineStrict": true,
   "engines": {
-    "node": ">= 13.0.0",
-    "npm": ">= 6.0.0",
-    "react": ">16.0.0"
+    "node": "= 12.x",
+    "npm": "= 6.x",
+    "react": "> 16.0.0"
   },
   "dependencies": {
     "@material-ui/core": "^4.9.14",
