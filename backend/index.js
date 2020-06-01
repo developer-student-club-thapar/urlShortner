@@ -20,11 +20,10 @@ app.use((req, res, next) => {
   next();
 });
 
-
 // Define Routes
-app.use('/', require('./routes/index'))
-app.use('/api/url', require('./routes/url'))
+app.use('/', require('./routes/index'));
+app.use('/api/url', require('./routes/url'));
 
-const port = 5000
+const port = 5000;
 
 app.listen(port);
