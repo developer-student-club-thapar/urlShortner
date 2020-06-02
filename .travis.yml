@@ -16,7 +16,7 @@ jobs:
       install:
         - npm install --frozen-lockfile
       script:
-        - npm format
+        - npm run test
         - npm run build
       #This is to deploy the UI codebase to the github pages
       # deploy:
