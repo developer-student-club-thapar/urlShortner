@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/prettier/prettier
-    rev: 2.0.5
+    rev: 1.19.1
     hooks:
       - id: prettier
   - repo: https://github.com/igorshubovych/markdownlint-cli
