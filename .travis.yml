@@ -30,8 +30,8 @@ jobs:
 
     #This test helps us to check standard linting of the codebase
     - language: python
-      python: '3.7'
-      cache: pip
+      python: 
+        - 3.7
       install:
         - pip install pre-commit
       script:
