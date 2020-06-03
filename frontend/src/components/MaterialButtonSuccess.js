@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import styled, { css } from "styled-components";
+import React, { Component } from 'react';
+import styled, { css } from 'styled-components';
 
 function MaterialButtonSuccess(props) {
   return (
     <Container {...props}>
-      <Shorten>{props.shorten || "SHORTEN"}</Shorten>
+      <Shorten>{props.shorten || 'SHORTEN'}</Shorten>
     </Container>
   );
 }
 
 const Container = styled.div`
   display: flex;
-  background-color: rgba(65,117,5,1);
+  background-color: rgba(65, 117, 5, 1);
   justify-content: center;
   align-items: center;
   flex-direction: row;
