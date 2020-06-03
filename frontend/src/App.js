@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import LinkForm from './components/LinkForm';
+//import LinkForm from './components/LinkForm';
+import {Router,Route} from "react-router-dom";
 import './App.css';
-class App extends Component {
-  render() {
+import HomeScreen from './screens/Main'
+
+const App = () => {
     return (
       <div className="url-space">
-        <h1>URL Shortener</h1>
-        <LinkForm />
+        <HomeScreen />
       </div>
     );
   }
-}
 
 export default App;
