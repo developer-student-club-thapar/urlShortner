@@ -42,7 +42,7 @@ const InputStyle = styled.input`
   text-align: justify;
   background-color: rgba(230, 230, 230, 0.68);
   border-width: 1px;
-  border-color: rgba(74,144,226,1);
+  border-color: rgba(74, 144, 226, 1);
   opacity: 0.85;
   border-style: solid;
   background: transparent;
