@@ -10,7 +10,7 @@
 <a href="https://facebook.com/dscthapar"><img src="https://github.com/aritraroy/social-icons/blob/master/facebook-icon.png?raw=true" width="60"></a>
 <a href="https://instagram.com/dsc.tiet"><img src="https://github.com/aritraroy/social-icons/blob/master/instagram-icon.png?raw=true" width="60"></a>
 
-# URLShortner
+# [URLShortner](https://urlshort.dsctiet.tech)
 
 [![Build Status](https://travis-ci.com/developer-student-club-thapar/urlShortner.svg?branch=master)](https://travis-ci.com/github/developer-student-club-thapar/urlShortner)  [![Slack Status](https://img.shields.io/badge/slack-chat-purple.svg?logo=slack)](https://dscthapar-gspatiala.slack.com/join/shared_invite/enQtNzU2MzA2MjcxNzkyLTkwNDRiNWMzYjUzYjNjYjM0M2JhMDgwOTI3MGQwYWU1NzNlNGMxZGVhNzk0MGZiYTI5YzgwZDhiMTk1MjE4M2M) [![GitHub issues](https://img.shields.io/github/issues/developer-student-club-thapar/urlShortner?logo=github)](https://github.com/developer-student-club-thapar/urlShortner/issues)
 ![Size](https://github-size-badge.herokuapp.com/developer-student-club-thapar/urlShortner.svg)
