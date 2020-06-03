@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import styled, { css } from "styled-components";
-import MaterialButtonSuccess from "../components/MaterialButtonSuccess";
-import MaterialHelperTextBox from "../components/MaterialHelperTextBox";
+import React, { Component } from 'react';
+import styled, { css } from 'styled-components';
+import MaterialButtonSuccess from '../components/MaterialButtonSuccess';
+import MaterialHelperTextBox from '../components/MaterialHelperTextBox';
 
 function HomeScreen() {
   return (
@@ -9,23 +9,23 @@ function HomeScreen() {
       <Image3StackStack>
         <Image3Stack>
           <Image3
-            src={require("../assets/images/Google-IO-2019-1281.jpg")}
+            src={require('../assets/images/Google-IO-2019-1281.jpg')}
           ></Image3>
           <Image4
-            src={require("../assets/images/Google-IO-2019-1281.jpg")}
+            src={require('../assets/images/Google-IO-2019-1281.jpg')}
           ></Image4>
           <Image
-            src={require("../assets/images/io19_designguide_hero_A_Share.png")}
+            src={require('../assets/images/io19_designguide_hero_A_Share.png')}
           ></Image>
           <Rect>
             <MaterialButtonSuccess
               style={{
                 height: 61,
                 width: 201,
-                overflow: "hidden",
+                overflow: 'hidden',
                 marginTop: 55,
                 marginLeft: 955,
-                boxShadow: "5px 5px 12px  0.19px rgba(0,0,0,1) "
+                boxShadow: '5px 5px 12px  0.19px rgba(0,0,0,1) ',
               }}
             ></MaterialButtonSuccess>
           </Rect>
@@ -34,9 +34,9 @@ function HomeScreen() {
             style={{
               height: 122,
               width: 698,
-              position: "absolute",
+              position: 'absolute',
               left: 816,
-              top: 685
+              top: 685,
             }}
             stackedLabel="Enter the URL"
           ></MaterialHelperTextBox>
@@ -50,7 +50,7 @@ function HomeScreen() {
 
 const Container = styled.div`
   display: flex;
-  background-color: rgba(255,255,255,1);
+  background-color: rgba(255, 255, 255, 1);
   flex-direction: column;
   height: 100vh;
   width: 100vw;
@@ -59,7 +59,7 @@ const Container = styled.div`
 const Image3 = styled.img`
   top: 748px;
   left: 0px;
-  width: 1336px;
+  width: 960px;
   height: 638px;
   position: absolute;
   transform: [
@@ -108,14 +108,14 @@ const Rect = styled.div`
   width: 1317px;
   height: 153px;
   position: absolute;
-  background-color: rgba(45,134,236,1);
+  background-color: rgba(45, 134, 236, 1);
   border-radius: 11px;
   overflow: hidden;
   flex-direction: column;
   top: 691px;
   left: 720px;
   display: flex;
-  box-shadow: 5px 5px 10px  0.14px rgba(0,0,0,1) ;
+  box-shadow: 5px 5px 10px 0.14px rgba(0, 0, 0, 1);
 `;
 
 const Image3Stack = styled.div`
