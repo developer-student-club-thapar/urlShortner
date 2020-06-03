@@ -18,7 +18,7 @@ jobs:
         provider: pages
         skip_cleanup: true
         github_token: $GITHUB_TOKEN
-        local-dir: build
+        local-dir: frontend/build
         on:
           branch: master
     # Need to check integrity of the backend code
