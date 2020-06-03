@@ -7,7 +7,8 @@ jobs:
     # Run JS tests
     - language: node_js
       # The Node version here must be kept in sync with that in `package.json`.
-      node_js: '12.16.1'
+      node_js: 
+        -'12.16.1'
       cache: npm
       before_install:
         cd frontend/
