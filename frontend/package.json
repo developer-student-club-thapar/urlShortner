@@ -1,5 +1,4 @@
 {
-  "homepage": "urlshort.dsctiet.tech",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
@@ -9,6 +8,11 @@
     "npm": "= 6.x",
     "react": "> 16.0.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/developer-student-club-thapar/urlShortner.git"
+  },
+  "homepage": "https://urlshort.dsctiet.tech",
   "dependencies": {
     "@material-ui/core": "^4.9.14",
     "@testing-library/jest-dom": "^4.2.4",
