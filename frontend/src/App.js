@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 //import LinkForm from './components/LinkForm';
 import { Router, Route } from 'react-router-dom';
 import './App.css';
-import HomeScreen from './screens/Main';
+import HomeScreen from './screens/Home';
 
 const App = () => {
   return (
