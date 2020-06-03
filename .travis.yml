@@ -2,20 +2,19 @@ dist: xenial
 # Use the latest Travis images since they are more up to date than the stable release.
 group: edge
 jobs:
-    include:
-    
+  include:
     # Run JS tests
     - language: node_js
       # The Node version here must be kept in sync with that in `package.json`.
       node_js: '12.16.1'
       cache: npm
-      before_install:
-        cd frontend/
+      before_install: cd frontend/
       install:
         - npm install --frozen-lockfile
       script:
         #- npm run test
         - npm run build
+
       #This is to deploy the UI codebase to the github pages
       # deploy:
       #   provider: pages
@@ -24,7 +23,6 @@ jobs:
       #   local-dir: build
       #   on:
       #     branch: master
-
     # Need to check integrity of the backend code
 
     #This test helps us to check standard linting of the codebase
