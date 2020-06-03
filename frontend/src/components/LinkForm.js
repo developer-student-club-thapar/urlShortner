@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import './LinkForm.css';
 
-const classes = makeStyles((theme) => ({
+const classes = makeStyles(theme => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
@@ -42,14 +42,14 @@ class LinkForm extends Component {
     shortUrl: '',
   };
 
-  handleChange = (event) => {
+  handleChange = event => {
     this.setState({
       longUrl: event.target.value,
     });
     // console.log(event.target.value);
   };
 
-  handleSubmit = async (event) => {
+  handleSubmit = async event => {
     // console.log(this.state.longUrl);
     event.preventDefault();
 
