@@ -24,7 +24,7 @@ const StackedLabel = styled.span`
   opacity: 0.6;
   padding-top: 16px;
   font-style: normal;
-  font-weight: 900;
+  font-weight: 700;
 `;
 
 const InputStyle = styled.input`
@@ -43,8 +43,7 @@ const InputStyle = styled.input`
   background-color: rgba(230, 230, 230,0.68);
   border-width: 1px;
   border-color: rgba(74,144,226,1);
-  border-radius: 80px;
-  opacity: 0.71;
+  opacity: 0.85;
   border-style: solid;
   background: transparent;
   display: flex;

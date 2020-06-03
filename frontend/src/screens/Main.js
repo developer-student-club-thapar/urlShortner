@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
-import MaterialButtonSuccess from "../components/MaterialButtonSuccess";
 import MaterialHelperTextBox from "../components/MaterialHelperTextBox";
+import MaterialUnderlineTextbox from "../components/MaterialUnderlineTextbox";
+import MaterialButtonDark from "../components/MaterialButtonDark";
+import MaterialButtonSuccess from "../components/MaterialButtonSuccess";
 
-function HomeScreen() {
+function Untitled(props) {
   return (
     <Container>
       <Image3StackStack>
@@ -18,31 +20,63 @@ function HomeScreen() {
             src={require("../assets/images/io19_designguide_hero_A_Share.png")}
           ></Image>
           <Rect>
+            <Rect2 style={{ margin: "null" }}></Rect2>
+            <Rect3 style={{ margin: "null" }}></Rect3>
+            <MaterialHelperTextBox
+              inputStyle="Input"
+              style={{
+                height: 122,
+                width: 698,
+                position: "absolute",
+                left: 108,
+                top: 0
+              }}
+              stackedLabel="Enter the URL"
+              inputStyle="              https://"
+            ></MaterialHelperTextBox>
+            <MaterialUnderlineTextbox
+              inputStyle="Placeholder"
+              style={{
+                height: 59,
+                width: 698,
+                position: "absolute",
+                left: 144,
+                top: 186,
+                borderWidth: 1,
+                borderColor: "#000000",
+                borderStyle: "solid"
+              }}
+              inputStyle="                  short url"
+            ></MaterialUnderlineTextbox>
+            <MaterialButtonDark
+              style={{
+                height: 58,
+                width: 107,
+                position: "absolute",
+                left: 879,
+                top: 186
+              }}
+            ></MaterialButtonDark>
             <MaterialButtonSuccess
               style={{
                 height: 61,
-                width: 201,
+                width: 178,
+                position: "absolute",
+                left: 932,
+                top: 61,
                 overflow: "hidden",
-                marginTop: 55,
-                marginLeft: 955,
+                borderWidth: 1,
+                borderColor: "rgba(74,144,226,1)",
+                borderStyle: "solid",
                 boxShadow: "5px 5px 12px  0.19px rgba(0,0,0,1) "
               }}
             ></MaterialButtonSuccess>
           </Rect>
-          <MaterialHelperTextBox
-            inputStyle="Input"
-            style={{
-              height: 122,
-              width: 698,
-              position: "absolute",
-              left: 816,
-              top: 685
-            }}
-            stackedLabel="Enter the URL"
-          ></MaterialHelperTextBox>
         </Image3Stack>
-        <UrlShortner>URL Shortner</UrlShortner>
-        <PoweredByDscTiet>Powered By DSC TIET</PoweredByDscTiet>
+        <UrlShortnerStack>
+          <UrlShortner>URL Shortner</UrlShortner>
+          <PoweredByDscTiet>Powered By DSC TIET</PoweredByDscTiet>
+        </UrlShortnerStack>
       </Image3StackStack>
     </Container>
   );
@@ -54,6 +88,7 @@ const Container = styled.div`
   flex-direction: column;
   height: 100vh;
   width: 100vw;
+  overflow:hidden;
 `;
 
 const Image3 = styled.img`
@@ -105,17 +140,35 @@ const Image = styled.img`
 `;
 
 const Rect = styled.div`
-  width: 1317px;
-  height: 153px;
+  width: 1272px;
+  height: 330px;
   position: absolute;
-  background-color: rgba(45,134,236,1);
+  background-color: rgba(74,144,226,1);
   border-radius: 11px;
   overflow: hidden;
   flex-direction: column;
-  top: 691px;
-  left: 720px;
+  top: 628px;
+  left: 708px;
   display: flex;
   box-shadow: 5px 5px 10px  0.14px rgba(0,0,0,1) ;
+`;
+
+const Rect2 = styled.div`
+  flex: 0.5 1 0%;
+  background-color: rgba(226, 226, 226,1);
+  margin-left: 0px;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Rect3 = styled.div`
+  flex: 0.5 1 0%;
+  background-color: rgba(245, 245, 245,1);
+  margin-left: 0px;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Image3Stack = styled.div`
@@ -128,27 +181,35 @@ const Image3Stack = styled.div`
 
 const UrlShortner = styled.span`
   font-family: Calibri;
-  top: 378px;
-  left: 596px;
+  top: 0px;
+  left: 0px;
   position: absolute;
   color: #121212;
-  height: 85px;
-  width: 441px;
-  font-size: 67px;
+  height: 117px;
+  width: 545px;
+  font-size: 60px;
   font-style: normal;
   font-weight: 700;
 `;
 
 const PoweredByDscTiet = styled.span`
   font-family: Roboto;
-  top: 463px;
-  left: 847px;
+  top: 101px;
+  left: 267px;
   position: absolute;
   font-style: normal;
   font-weight: regular;
   color: #121212;
   height: 25px;
   width: 189px;
+`;
+
+const UrlShortnerStack = styled.div`
+  top: 362px;
+  left: 580px;
+  width: 545px;
+  height: 126px;
+  position: absolute;
 `;
 
 const Image3StackStack = styled.div`
@@ -159,4 +220,4 @@ const Image3StackStack = styled.div`
   position: relative;
 `;
 
-export default HomeScreen;
+export default Untitled;
