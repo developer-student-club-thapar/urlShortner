@@ -1,11 +1,53 @@
 import React, { Component } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import MaterialHelperTextBox from "../components/MaterialHelperTextBox";
 import MaterialUnderlineTextbox from "../components/MaterialUnderlineTextbox";
 import MaterialButtonSuccess from "../components/MaterialButtonSuccess";
 import MaterialButtonDark from "../components/MaterialButtonDark";
 
-function HomeScreen(props) {
+class HomeScreen extends Component {
+state = {
+    longUrl: ''
+    // shortUrl: '',
+  };
+
+
+  handleChange = event => {
+    this.setState({
+      longUrl: event.target.value,
+    });
+    // console.log(event.target.value);
+  };
+
+  handleSubmit = async event => {
+    // console.log(this.state.longUrl);
+    event.preventDefault();
+    
+    try {
+      const response = await fetch('http://localhost:5000/api/url/shorten', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          longUrl : this.state.longUrl,
+        }),
+      });
+      
+      const responseData = await response.json();
+
+      this.setState({
+        shortUrl: responseData.shortUrl,
+      });
+      console.log(this.state.shortUrl);
+    } catch (err) {
+      console.log(err);
+    }
+
+  };
+
+ 
+render(){
   return (
     <Container>
       <ButtonStack>
@@ -22,8 +64,11 @@ function HomeScreen(props) {
           <Rect gradientImage="Gradient_BTNZaAY.png">
             <Rect2></Rect2>
             <Rect3></Rect3>
+
+              <form noValidate autoComplete="off">
+
             <MaterialHelperTextBox
-              inputStyle="Input"
+              inputStyle="Input url"
               style={{
                 height: 122,
                 width: 698,
@@ -32,21 +77,13 @@ function HomeScreen(props) {
                 top: 0
               }}
               stackedLabel="Enter the URL"
-            ></MaterialHelperTextBox>
-            <MaterialUnderlineTextbox
-              inputStyle="Placeholder"
-              style={{
-                height: 59,
-                width: 698,
-                position: "absolute",
-                left: 144,
-                top: 186,
-                borderWidth: 1,
-                borderColor: "#000000",
-                borderStyle: "solid"
-              }}
-              inputStyle="                  short url"
-            ></MaterialUnderlineTextbox>
+              value={this.state.longUrl}
+              onChange={this.handleChange}
+              
+            > 
+            </MaterialHelperTextBox>
+
+            
             <MaterialButtonSuccess
               style={{
                 height: 61,
@@ -58,9 +95,34 @@ function HomeScreen(props) {
                 borderWidth: 1,
                 borderColor: "rgba(74,144,226,1)",
                 borderStyle: "solid",
-                boxShadow: "5px 5px 12px  0.19px rgba(0,0,0,1) "
+                boxShadow: "5px 5px 12px  0.19px rgba(0,0,0,1) ",
+                cursor : "pointer"
               }}
-            ></MaterialButtonSuccess>
+              onClick={this.handleSubmit}
+            >
+            </MaterialButtonSuccess>
+
+           
+            </form>
+
+            <input placeholder="Short Url" value={this.state.shortUrl} />
+
+             <MaterialUnderlineTextbox
+              value={this.state.shortUrl}
+              style={{
+                height: 59,
+                width: 698,
+                position: "absolute",
+                left: 144,
+                top: 186,
+                borderWidth: 1,
+                borderColor: "#000000",
+                borderStyle: "solid"
+              }}
+              inputStyle="Short url"
+              
+            ></MaterialUnderlineTextbox>
+
             <MaterialButtonDark
               style={{
                 height: 58,
@@ -80,6 +142,7 @@ function HomeScreen(props) {
       </ButtonStack>
     </Container>
   );
+}
 }
 
 const Container = styled.div`
