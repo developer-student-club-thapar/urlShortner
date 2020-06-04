@@ -34,7 +34,6 @@ function HomeScreen() {
               stackedLabel="Enter the URL"
             ></MaterialHelperTextBox>
             <MaterialUnderlineTextbox
-              inputStyle="Placeholder"
               style={{
                 height: 59,
                 width: 698,
