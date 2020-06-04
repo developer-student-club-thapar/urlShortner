@@ -1,10 +1,10 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 function MaterialUnderlineTextbox(props) {
   return (
     <Container {...props}>
-      <InputStyle placeholder={props.inputStyle || "Placeholder"}></InputStyle>
+      <InputStyle placeholder={props.inputStyle || 'Placeholder'}></InputStyle>
     </Container>
   );
 }
@@ -12,7 +12,7 @@ function MaterialUnderlineTextbox(props) {
 const Container = styled.div`
   display: flex;
   border-bottom-width: 1px;
-  border-color: #D9D5DC;
+  border-color: #d9d5dc;
   background-color: transparent;
   flex-direction: row;
   align-items: center;
@@ -20,7 +20,7 @@ const Container = styled.div`
 
 const InputStyle = styled.input`
   font-family: Roboto;
-  color: rgba(255,255,255,1);
+  color: rgba(255, 255, 255, 1);
   padding-right: 5px;
   font-size: 20px;
   align-self: stretch;

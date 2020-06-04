@@ -1,5 +1,5 @@
-import React from "react";
-import styled  from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 function MaterialButtonDark(props) {
   return (
@@ -18,7 +18,7 @@ const Container = styled.div`
   padding-left: 16px;
   padding-right: 16px;
   background-color: #212121;
-  box-shadow: 5px 5px 5px  0.35px #000 ;
+  box-shadow: 5px 5px 5px 0.35px #000;
 `;
 
 const Copy = styled.span`
