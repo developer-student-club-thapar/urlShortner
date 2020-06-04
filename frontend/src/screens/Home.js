@@ -1,11 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { Component } from 'react';
+import styled, { css } from 'styled-components';
 import MaterialHelperTextBox from '../components/MaterialHelperTextBox';
 import MaterialUnderlineTextbox from '../components/MaterialUnderlineTextbox';
 import MaterialButtonSuccess from '../components/MaterialButtonSuccess';
 import MaterialButtonDark from '../components/MaterialButtonDark';
 
-function HomeScreen() {
+function HomeScreen(props) {
   return (
     <Container>
       <ButtonStack>
@@ -114,7 +114,6 @@ const Image = styled.div`
   position: absolute;
   flex-direction: column;
   display: flex;
-  overflow: hidden;
   background-image: url(${require('../assets/images/background.png')});
   background-size: cover;
 `;
@@ -125,7 +124,6 @@ const Rect4 = styled.div`
   width: 443px;
   height: 117px;
   position: absolute;
-  overflow: hidden;
   background-color: #e6e6e6;
   flex-direction: column;
   display: flex;
@@ -183,7 +181,6 @@ const Rect2 = styled.div`
   margin-left: 0px;
   opacity: 0;
   display: flex;
-  overflow: hidden;
   flex-direction: column;
 `;
 
@@ -192,7 +189,6 @@ const Rect3 = styled.div`
   background-color: rgba(245, 245, 245, 1);
   margin-left: 0px;
   opacity: 0;
-  overflow: hidden;
   flex-direction: column;
   display: flex;
 `;

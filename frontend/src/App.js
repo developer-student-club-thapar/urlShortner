@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
+//import LinkForm from './components/LinkForm';
+import { Router, Route } from 'react-router-dom';
 import './App.css';
 import HomeScreen from './screens/Home';
 
