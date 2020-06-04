@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
-import './LinkForm.css';
 
 const classes = makeStyles(theme => ({
   root: {
@@ -77,6 +76,7 @@ class LinkForm extends Component {
   render() {
     return (
       <div className={classes.root}>
+        <foreground />
         <form noValidate autoComplete="off">
           <TextField
             id="outlined-textarea"
