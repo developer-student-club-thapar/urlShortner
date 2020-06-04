@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import MaterialHelperTextBox from '../components/MaterialHelperTextBox';
 import MaterialUnderlineTextbox from '../components/MaterialUnderlineTextbox';
 import MaterialButtonSuccess from '../components/MaterialButtonSuccess';
@@ -17,7 +18,12 @@ class HomeScreen extends Component {
     });
     // console.log(event.target.value);
   };
-
+  handleCopy = event => {
+    event.preventDefault();
+    this.setState({
+      button: false,
+    });
+  };
   handleSubmit = async event => {
     // console.log(this.state.longUrl);
     event.preventDefault();
@@ -64,12 +70,12 @@ class HomeScreen extends Component {
 
               <form noValidate autoComplete="off">
                 <MaterialHelperTextBox
-                  inputStyle="Input url"
+                  inputStyle="      https://"
                   style={{
                     height: 122,
                     width: 698,
                     position: 'absolute',
-                    left: 108,
+                    left: 458,
                     top: 0,
                   }}
                   stackedLabel="Enter the URL"
@@ -82,50 +88,42 @@ class HomeScreen extends Component {
                     height: 61,
                     width: 178,
                     position: 'absolute',
-                    left: 879,
+                    left: 1229,
                     top: 61,
                     overflow: 'hidden',
-                    borderWidth: 1,
-                    borderColor: 'rgba(74,144,226,1)',
-                    borderStyle: 'solid',
-                    boxShadow: '5px 5px 12px  0.19px rgba(0,0,0,1) ',
                     cursor: 'pointer',
                   }}
                   onClick={this.handleSubmit}
                 ></MaterialButtonSuccess>
               </form>
-
-              <input placeholder="Short Url" value={this.state.shortUrl} />
-
               <MaterialUnderlineTextbox
-                value={this.state.shortUrl}
                 style={{
                   height: 59,
                   width: 698,
                   position: 'absolute',
-                  left: 144,
+                  left: 494,
                   top: 186,
                   borderWidth: 1,
-                  borderColor: '#000000',
+                  borderColor: 'rgba(255,255,255,1)',
                   borderStyle: 'solid',
                 }}
                 inputStyle="Short url"
+                value={this.state.shortUrl}
               ></MaterialUnderlineTextbox>
-
-              <MaterialButtonDark
-                style={{
-                  height: 58,
-                  width: 107,
-                  position: 'absolute',
-                  left: 879,
-                  top: 186,
-                  borderWidth: 1,
-                  borderColor: 'rgba(74,144,226,1)',
-                  elevation: 0,
-                  borderStyle: 'solid',
-                  boxShadow: '5px 5px 0px  0.12px rgba(0,0,0,1) ',
-                }}
-              ></MaterialButtonDark>
+              <CopyToClipboard text={this.state.shortUrl}>
+                <MaterialButtonDark
+                  onClick={this.handleCopy}
+                  style={{
+                    height: 58,
+                    width: 107,
+                    position: 'absolute',
+                    left: 1229,
+                    top: 186,
+                    borderWidth: 1,
+                    elevation: 0,
+                  }}
+                ></MaterialButtonDark>
+              </CopyToClipboard>
             </Rect>
           </Image>
         </ButtonStack>
@@ -136,6 +134,7 @@ class HomeScreen extends Component {
 
 const Container = styled.div`
   display: flex;
+  overflow: hidden;
   background-color: rgba(255, 255, 255, 1);
   flex-direction: column;
   height: 100vh;
@@ -169,6 +168,7 @@ const Image = styled.div`
   display: flex;
   background-image: url(${require('../assets/images/background.png')});
   background-size: cover;
+  overflow: hidden;
 `;
 
 const Rect4 = styled.div`
@@ -215,14 +215,13 @@ const Rect4Stack = styled.div`
 `;
 
 const Rect = styled.div`
-  width: 1256px;
+  width: 1974;
   height: 346px;
-  border-radius: 11px;
+  position: absolute;
   overflow: hidden;
   flex-direction: column;
-  background-color: rgba(23, 102, 192, 0.68);
+  background-color: rgba(26, 35, 126, 0.81);
   margin-top: 132px;
-  margin-left: 300px;
   position: relative;
   display: flex;
   box-shadow: 5px 5px 10px 0.14px rgba(0, 0, 0, 1);
