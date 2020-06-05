@@ -5,8 +5,6 @@ import MaterialHelperTextBox from '../components/MaterialHelperTextBox';
 import MaterialUnderlineTextbox from '../components/MaterialUnderlineTextbox';
 import MaterialButtonSuccess from '../components/MaterialButtonSuccess';
 import MaterialButtonDark from '../components/MaterialButtonDark';
-import {Helmet} from "react-helmet";
-import ScriptTag from "react-script-tag";
 var QRCode = require('qrcode.react');
 
 class HomeScreen extends Component {
@@ -70,7 +68,6 @@ class HomeScreen extends Component {
             <Rect gradientImage="Gradient_BTNZaAY.png">
               <Rect2></Rect2>
               <Rect3></Rect3>
-
               <form noValidate autoComplete="off">
                 <MaterialHelperTextBox
                   inputStyle="      https://"
@@ -128,19 +125,15 @@ class HomeScreen extends Component {
                   }}
                 ></MaterialButtonDark>
               </CopyToClipboard>
-             
-              
-                    <QRCode
-                    className =  "qr"
-                     value={this.state.shortUrl}
-                     style={{
-                      
-                      position: 'absolute',
-                      left: 1400,
-                      top: 186,
-                     
-                    }} />,
-
+              <QRCode
+                value={this.state.shortUrl}
+                style={{
+                  position: 'absolute',
+                  left: 1400,
+                  top: 186,
+                }}
+              />
+              ,
             </Rect>
           </Image>
         </ButtonStack>
