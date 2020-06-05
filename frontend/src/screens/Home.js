@@ -5,11 +5,14 @@ import MaterialHelperTextBox from '../components/MaterialHelperTextBox';
 import MaterialUnderlineTextbox from '../components/MaterialUnderlineTextbox';
 import MaterialButtonSuccess from '../components/MaterialButtonSuccess';
 import MaterialButtonDark from '../components/MaterialButtonDark';
+import {Helmet} from "react-helmet";
+import ScriptTag from "react-script-tag";
+var QRCode = require('qrcode.react');
 
 class HomeScreen extends Component {
   state = {
     longUrl: '',
-    // shortUrl: '',
+    shortUrl: '',
   };
 
   handleChange = event => {
@@ -44,7 +47,7 @@ class HomeScreen extends Component {
       this.setState({
         shortUrl: responseData.shortUrl,
       });
-      console.log(this.state.shortUrl);
+      // console.log(this.state.shortUrl);
     } catch (err) {
       console.log(err);
     }
@@ -121,9 +124,23 @@ class HomeScreen extends Component {
                     top: 186,
                     borderWidth: 1,
                     elevation: 0,
+                    cursor: 'pointer',
                   }}
                 ></MaterialButtonDark>
               </CopyToClipboard>
+             
+              
+                    <QRCode
+                    className =  "qr"
+                     value={this.state.shortUrl}
+                     style={{
+                      
+                      position: 'absolute',
+                      left: 1400,
+                      top: 186,
+                     
+                    }} />,
+
             </Rect>
           </Image>
         </ButtonStack>
