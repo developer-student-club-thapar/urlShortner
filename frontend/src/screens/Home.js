@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import MaterialSwitch from '../components/MaterialSwitch';
+
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import MaterialHelperTextBox from '../components/MaterialHelperTextBox';
+import Chip from '@material-ui/core/Chip';
+//import MaterialComboBox from '../components/MaterialComboBox';
 import MaterialUnderlineTextbox from '../components/MaterialUnderlineTextbox';
 import MaterialButtonSuccess from '../components/MaterialButtonSuccess';
 import MaterialButtonDark from '../components/MaterialButtonDark';
+//import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 var QRCode = require('qrcode.react');
 
 class HomeScreen extends Component {
@@ -22,7 +28,7 @@ class HomeScreen extends Component {
   handleCopy = event => {
     event.preventDefault();
     this.setState({
-      button: false,
+      button: true,
     });
   };
   handleSubmit = async event => {
@@ -52,6 +58,7 @@ class HomeScreen extends Component {
   };
 
   render() {
+    const { button } = this.state;
     return (
       <Container>
         <ButtonStack>
@@ -62,6 +69,15 @@ class HomeScreen extends Component {
             <Rect4Stack>
               <Rect4>
                 <PoweredByDscTiet>Powered By DSC TIET</PoweredByDscTiet>
+                <MaterialSwitch
+                  style={{
+                    width: 45,
+                    height: 23,
+                    marginTop: 10,
+                    marginLeft: 398,
+                    boxShadow: '5px 5px 0px  0px undefined ',
+                  }}
+                ></MaterialSwitch>
               </Rect4>
               <UrlShortner>URL Shortner</UrlShortner>
             </Rect4Stack>
@@ -125,14 +141,23 @@ class HomeScreen extends Component {
                   }}
                 ></MaterialButtonDark>
               </CopyToClipboard>
-              <QRCode
-                value={this.state.shortUrl}
-                style={{
-                  position: 'absolute',
-                  left: 1400,
-                  top: 186,
-                }}
-              />
+              {button && (
+                <QRCode
+                  value={this.state.shortUrl}
+                  style={{
+                    position: 'absolute',
+                    left: 1500,
+                    top: 91,
+                  }}
+                />
+              )}
+              {button && (
+                <Rect5>
+                  <Alert variant="filled" severity="info">
+                    Copied to Clipboard !
+                  </Alert>
+                </Rect5>
+              )}
               ,
             </Rect>
           </Image>
@@ -260,6 +285,26 @@ const ButtonStack = styled.div`
   height: 1080px;
   margin-left: -10px;
   position: relative;
+`;
+const SelectKeyword = styled.span`
+  font-family: Roboto;
+  top: 18px;
+  left: 988px;
+  position: absolute;
+  font-style: normal;
+  font-weight: regular;
+  color: rgba(255, 255, 255, 1);
+  height: 11px;
+  width: 173px;
+`;
+
+const Rect5 = styled.div`
+  top: 271px;
+  left: 1171px;
+  width: 295px;
+  height: 44px;
+  position: absolute;
+  background-color: rgba(15, 15, 15, 0.45);
 `;
 
 export default HomeScreen;
