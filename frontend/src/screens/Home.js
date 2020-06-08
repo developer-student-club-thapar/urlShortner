@@ -4,7 +4,7 @@ import MaterialSwitch from '../components/MaterialSwitch';
 
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import MaterialHelperTextBox from '../components/MaterialHelperTextBox';
-import Chip from '@material-ui/core/Chip';
+// import Chip from '@material-ui/core/Chip';
 //import MaterialComboBox from '../components/MaterialComboBox';
 import MaterialUnderlineTextbox from '../components/MaterialUnderlineTextbox';
 import MaterialButtonSuccess from '../components/MaterialButtonSuccess';
@@ -17,14 +17,14 @@ class HomeScreen extends Component {
   state = {
     longUrl: '',
     shortUrl: '',
-    error : ''
+    error: '',
   };
 
   handleChange = event => {
     this.setState({
       longUrl: event.target.value,
       shortUrl: '',
-      error : ''
+      error: '',
     });
     // console.log(event.target.value);
   };
@@ -50,17 +50,15 @@ class HomeScreen extends Component {
       });
 
       const responseData = await response.json();
-      if(typeof responseData == "object"){
-      this.setState({
-        shortUrl: responseData.shortUrl,
-      });
-    }
-    else{
-      console.log(responseData);
-      this.setState({
-        error:responseData,
-      });
-
+      if (typeof responseData == 'object') {
+        this.setState({
+          shortUrl: responseData.shortUrl,
+        });
+      } else {
+        console.log(responseData);
+        this.setState({
+          error: responseData,
+        });
       }
     } catch (err) {
       console.log(err);
@@ -122,20 +120,16 @@ class HomeScreen extends Component {
                   onClick={this.handleSubmit}
                 ></MaterialButtonSuccess>
               </form>
-           
-              <Alert severity="error"  color="error" style={{
-                width:400,
-                marginLeft: 450,
-                
-              }}>
-                    {this.state.error}
-                  </Alert>
-                
-
-              
-
-
-
+              <Alert
+                severity="error"
+                color="error"
+                style={{
+                  width: 400,
+                  marginLeft: 450,
+                }}
+              >
+                {this.state.error}
+              </Alert>
               <MaterialUnderlineTextbox
                 style={{
                   height: 59,
@@ -147,7 +141,6 @@ class HomeScreen extends Component {
                   borderColor: 'rgba(255,255,255,1)',
                   borderStyle: 'solid',
                 }}
-                
                 inputStyle="Short url"
                 value={this.state.shortUrl}
               ></MaterialUnderlineTextbox>
@@ -311,17 +304,17 @@ const ButtonStack = styled.div`
   margin-left: -10px;
   position: relative;
 `;
-const SelectKeyword = styled.span`
-  font-family: Roboto;
-  top: 18px;
-  left: 988px;
-  position: absolute;
-  font-style: normal;
-  font-weight: regular;
-  color: rgba(255, 255, 255, 1);
-  height: 11px;
-  width: 173px;
-`;
+// const SelectKeyword = styled.span`
+//   font-family: Roboto;
+//   top: 18px;
+//   left: 988px;
+//   position: absolute;
+//   font-style: normal;
+//   font-weight: regular;
+//   color: rgba(255, 255, 255, 1);
+//   height: 11px;
+//   width: 173px;
+// `;
 
 const Rect5 = styled.div`
   top: 271px;

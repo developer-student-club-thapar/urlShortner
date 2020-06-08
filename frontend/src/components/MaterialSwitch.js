@@ -4,7 +4,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import React, { useState } from 'react';
 
 import MaterialUISwitch from '@material-ui/core/Switch';
-import { lightBlue } from '@material-ui/core/colors';
+// import { lightBlue } from '@material-ui/core/colors';
 
 function MaterialSwitch(props) {
   const [darkState, setDarkState] = useState(false);
