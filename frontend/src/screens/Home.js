@@ -17,11 +17,14 @@ class HomeScreen extends Component {
   state = {
     longUrl: '',
     shortUrl: '',
+    error : ''
   };
 
   handleChange = event => {
     this.setState({
       longUrl: event.target.value,
+      shortUrl: '',
+      error : ''
     });
     // console.log(event.target.value);
   };
@@ -47,11 +50,18 @@ class HomeScreen extends Component {
       });
 
       const responseData = await response.json();
-
+      if(typeof responseData == "object"){
       this.setState({
         shortUrl: responseData.shortUrl,
       });
-      // console.log(this.state.shortUrl);
+    }
+    else{
+      console.log(responseData);
+      this.setState({
+        error:responseData,
+      });
+
+      }
     } catch (err) {
       console.log(err);
     }
@@ -112,17 +122,32 @@ class HomeScreen extends Component {
                   onClick={this.handleSubmit}
                 ></MaterialButtonSuccess>
               </form>
+           
+              <Alert severity="error"  color="error" style={{
+                width:400,
+                marginLeft: 450,
+                
+              }}>
+                    {this.state.error}
+                  </Alert>
+                
+
+              
+
+
+
               <MaterialUnderlineTextbox
                 style={{
                   height: 59,
                   width: 698,
                   position: 'absolute',
-                  left: 494,
+                  left: 492,
                   top: 186,
                   borderWidth: 1,
                   borderColor: 'rgba(255,255,255,1)',
                   borderStyle: 'solid',
                 }}
+                
                 inputStyle="Short url"
                 value={this.state.shortUrl}
               ></MaterialUnderlineTextbox>
