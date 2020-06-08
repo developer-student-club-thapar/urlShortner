@@ -9,6 +9,7 @@ const HttpError = require('../models/http-error');
 // route to shorten the link
 router.post('/shorten', async (req, res) => {
   const { longUrl } = req.body;
+  const { keyword } = req.body;
   const baseUrl = config.get('baseUrl');
 
   //check base url
@@ -21,7 +22,7 @@ router.post('/shorten', async (req, res) => {
   // Check Long Url is valid or not
   if (validUrl.isUri(longUrl)) {
     try {
-      let url = await Url.findOne({ longUrl });
+      let url = await Url.findOne({ longUrl, keyword });
 
       // if longurl is shortened already, then it will return same shorturl
       if (url) {
@@ -29,6 +30,7 @@ router.post('/shorten', async (req, res) => {
       } else {
         const shortUrl = baseUrl + '/' + urlCode;
         url = new Url({
+          keyword,
           longUrl,
           shortUrl,
           urlCode,
@@ -46,7 +48,11 @@ router.post('/shorten', async (req, res) => {
       return next(error);
     }
   } else {
-    res.status(401).json('Invalid long url');
+    if (longUrl == '') {
+      res.status(401).json('Please, fill url first.');
+    } else {
+      res.status(401).json('Invalid long url');
+    }
   }
 });
 

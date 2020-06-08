@@ -11,6 +11,7 @@ import MaterialButtonSuccess from '../components/MaterialButtonSuccess';
 import MaterialButtonDark from '../components/MaterialButtonDark';
 //import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
+import { red } from '@material-ui/core/colors';
 var QRCode = require('qrcode.react');
 
 class HomeScreen extends Component {
@@ -18,6 +19,14 @@ class HomeScreen extends Component {
     longUrl: '',
     shortUrl: '',
     error: '',
+    keyword: '',
+  };
+
+  handleChange2 = event => {
+    this.setState({
+      keyword: event.target.value,
+    });
+    // console.log(event.target.value);
   };
 
   handleChange = event => {
@@ -46,6 +55,7 @@ class HomeScreen extends Component {
         },
         body: JSON.stringify({
           longUrl: this.state.longUrl,
+          keyword: this.state.keyword,
         }),
       });
 
@@ -54,6 +64,7 @@ class HomeScreen extends Component {
         this.setState({
           shortUrl: responseData.shortUrl,
         });
+        console.log(responseData.keyword);
       } else {
         console.log(responseData);
         this.setState({
@@ -77,6 +88,7 @@ class HomeScreen extends Component {
             <Rect4Stack>
               <Rect4>
                 <PoweredByDscTiet>Powered By DSC TIET</PoweredByDscTiet>
+
                 <MaterialSwitch
                   style={{
                     width: 45,
@@ -93,6 +105,20 @@ class HomeScreen extends Component {
               <Rect2></Rect2>
               <Rect3></Rect3>
               <form noValidate autoComplete="off">
+                <MaterialHelperTextBox
+                  style={{
+                    height: 12,
+                    width: 300,
+                    position: 'absolute',
+                    left: 8,
+                    top: 0,
+                    color: red,
+                  }}
+                  stackedLabel="Enter the keyword"
+                  value={this.state.keyword}
+                  onChange={this.handleChange2}
+                ></MaterialHelperTextBox>
+
                 <MaterialHelperTextBox
                   inputStyle="      https://"
                   style={{
