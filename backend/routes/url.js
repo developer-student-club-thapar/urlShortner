@@ -42,16 +42,16 @@ router.post('/shorten', async (req, res) => {
       }
     } catch (err) {
       const error = new HttpError(
-        'Server error found, please try again later.',
+        'Internal Server Error. Please try again later!',
         500,
       );
       return next(error);
     }
   } else {
     if (longUrl == '') {
-      res.status(401).json('Please, fill url first.');
+      res.status(401).json('URL can not be empty!');
     } else {
-      res.status(401).json('Invalid long url');
+      res.status(401).json('Invalid URL!');
     }
   }
 });

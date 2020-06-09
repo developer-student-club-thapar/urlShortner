@@ -123,14 +123,11 @@ class HomeScreen extends Component {
                     Select Keyword
                   </InputLabel>
                   <Select
-                    labelId="demo-simple-select-placeholder-label-label"
                     label="Select Keyword"
                     value={this.state.keyword}
                     onChange={this.handleKeyword}
                   >
-                    <MenuItem value={'dsctiet'}>
-                      <em>dsctiet</em>
-                    </MenuItem>
+                    <MenuItem value={'dsctiet'}>dsctiet</MenuItem>
                     <MenuItem value={'lorem ipsum'}>lorem ipsum</MenuItem>
                   </Select>
                 </Rect6>

@@ -1,5 +1,4 @@
 {
-  // "mongoURI": "mongodb+srv://dsctiet:newproject@cluster0-7bly6.mongodb.net/test?retryWrites=true&w=majority",
-  "mongoURI": "mongodb+srv://Payal:newproject@cluster0-7bly6.mongodb.net/<database>?retryWrites=true&w=majority",
+  "mongoURI": "mongodb+srv://Payal:newproject@cluster0-7bly6.mongodb.net/UrlShortener?retryWrites=true&w=majority",
   "baseUrl": "http://localhost:5000"
 }
