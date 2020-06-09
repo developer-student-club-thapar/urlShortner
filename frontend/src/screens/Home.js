@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import MaterialSwitch from '../components/MaterialSwitch';
-
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import MaterialHelperTextBox from '../components/MaterialHelperTextBox';
+import InputLabel from '@material-ui/core/InputLabel';
 // import Chip from '@material-ui/core/Chip';
 //import MaterialComboBox from '../components/MaterialComboBox';
 import MaterialUnderlineTextbox from '../components/MaterialUnderlineTextbox';
 import MaterialButtonSuccess from '../components/MaterialButtonSuccess';
 import MaterialButtonDark from '../components/MaterialButtonDark';
-//import Snackbar from '@material-ui/core/Snackbar';
+//import Snackbar from '@material-ui/core/Snackbar';http://localhost:5000/100bW9DvP
 import Alert from '@material-ui/lab/Alert';
-import { red } from '@material-ui/core/colors';
 var QRCode = require('qrcode.react');
 
 class HomeScreen extends Component {
@@ -22,18 +23,16 @@ class HomeScreen extends Component {
     keyword: '',
   };
 
-  handleChange2 = event => {
+  handleKeyword = event => {
     this.setState({
       keyword: event.target.value,
-    });
-    // console.log(event.target.value);
+    }); // console.log(event.target.value);
   };
 
   handleChange = event => {
     this.setState({
       longUrl: event.target.value,
       shortUrl: '',
-      error: '',
     });
     // console.log(event.target.value);
   };
@@ -78,6 +77,7 @@ class HomeScreen extends Component {
 
   render() {
     const { button } = this.state;
+    const { error } = this.state;
     return (
       <Container>
         <ButtonStack>
@@ -106,39 +106,40 @@ class HomeScreen extends Component {
               <Rect3></Rect3>
               <form noValidate autoComplete="off">
                 <MaterialHelperTextBox
-                  style={{
-                    height: 12,
-                    width: 300,
-                    position: 'absolute',
-                    left: 8,
-                    top: 0,
-                    color: red,
-                  }}
-                  stackedLabel="Enter the keyword"
-                  value={this.state.keyword}
-                  onChange={this.handleChange2}
-                ></MaterialHelperTextBox>
-
-                <MaterialHelperTextBox
                   inputStyle="      https://"
                   style={{
                     height: 122,
                     width: 698,
                     position: 'absolute',
-                    left: 458,
+                    left: 301,
                     top: 0,
                   }}
                   stackedLabel="Enter the URL"
                   value={this.state.longUrl}
                   onChange={this.handleChange}
                 ></MaterialHelperTextBox>
-
+                <Rect6>
+                  <InputLabel id="demo-customized-select-label">
+                    Select Keyword
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-placeholder-label-label"
+                    label="Select Keyword"
+                    value={this.state.keyword}
+                    onChange={this.handleKeyword}
+                  >
+                    <MenuItem value={'dsctiet'}>
+                      <em>dsctiet</em>
+                    </MenuItem>
+                    <MenuItem value={'lorem ipsum'}>lorem ipsum</MenuItem>
+                  </Select>
+                </Rect6>
                 <MaterialButtonSuccess
                   style={{
                     height: 61,
                     width: 178,
                     position: 'absolute',
-                    left: 1229,
+                    left: 1269,
                     top: 61,
                     overflow: 'hidden',
                     cursor: 'pointer',
@@ -146,16 +147,13 @@ class HomeScreen extends Component {
                   onClick={this.handleSubmit}
                 ></MaterialButtonSuccess>
               </form>
-              <Alert
-                severity="error"
-                color="error"
-                style={{
-                  width: 400,
-                  marginLeft: 450,
-                }}
-              >
-                {this.state.error}
-              </Alert>
+              {error && (
+                <Rect5>
+                  <Alert severity="warning" variant="filled">
+                    {this.state.error}
+                  </Alert>
+                </Rect5>
+              )}
               <MaterialUnderlineTextbox
                 style={{
                   height: 59,
@@ -213,7 +211,6 @@ class HomeScreen extends Component {
 
 const Container = styled.div`
   display: flex;
-  overflow: hidden;
   background-color: rgba(255, 255, 255, 1);
   flex-direction: column;
   height: 100vh;
@@ -350,5 +347,11 @@ const Rect5 = styled.div`
   position: absolute;
   background-color: rgba(15, 15, 15, 0.45);
 `;
-
+const Rect6 = styled.div`
+  top: 51px;
+  left: 1067px;
+  width: 181px;
+  height: 61px;
+  position: absolute;
+`;
 export default HomeScreen;
