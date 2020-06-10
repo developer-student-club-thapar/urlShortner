@@ -18,7 +18,8 @@ const Container = styled.div`
   padding-left: 16px;
   padding-right: 16px;
   background-color: #212121;
-  box-shadow: 5px 5px 5px 0.35px #000;
+  border: 1px;
+  box-shadow: 2px 2px 5px 0.35px #111111;
 `;
 
 const Copy = styled.span`

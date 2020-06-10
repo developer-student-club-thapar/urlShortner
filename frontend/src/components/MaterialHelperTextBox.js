@@ -29,11 +29,12 @@ const StackedLabel = styled.span`
 
 const InputStyle = styled.input`
   font-family: Roboto;
-  color: rgba(250, 246, 246, 1);
+  color: rgba(0, 0, 0, 1);
   font-size: 20px;
   align-self: stretch;
   line-height: 16px;
   padding-top: 8px;
+  padding-left: 20px;
   flex: 1 1 0%;
   padding-bottom: 8px;
   width: 698px;
@@ -45,7 +46,6 @@ const InputStyle = styled.input`
   border-color: rgba(74, 144, 226, 1);
   opacity: 0.85;
   border-style: solid;
-  background: transparent;
   display: flex;
   flex-direction: column;
   box-shadow: 5px 5px 20px 0.44px rgba(0, 0, 0, 1);
