@@ -188,7 +188,7 @@ const Container = styled.div`
   height: 100vh;
   width: 100vw;
 `;
-const Image = styled.div`
+/*const Image = styled.div`
   top: 0px;
   left: 0px;
   width: 1940px;
@@ -199,7 +199,7 @@ const Image = styled.div`
   background-image: url(${require('../assets/images/background.png')});
   background-size: cover;
   overflow: hidden;
-`;
+`;*/
 
 const Rect = styled.div`
   width: 1974;
