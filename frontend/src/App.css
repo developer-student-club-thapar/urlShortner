@@ -1,7 +1,7 @@
 .UrlShortner {
   font-family: Calibri;
-  top: 0px;
-  left: 40px;
+  top: 150px;
+  left: 660px;
   position: absolute;
 
   height: 117px;
@@ -42,16 +42,14 @@
   font-style: normal;
   font-weight: regular;
   height: 25px;
-  width: 189px;
+  width: 289px;
   margin-top: 59px;
   margin-left: 254px;
 }
 .Image {
-  top: 0px;
-  left: 0px;
-  width: 2040px;
-  height: 1080px;
-  position: absolute;
-  display: flex;
-  background-image: url('../src/assets/images/background.png');
+  width: 80%;
+  height: 200px;
+  background-size: cover;
+  color: black;
+  background-image: linear-gradient(to bottom left, #b6b4c2, #aac9ce);
 }

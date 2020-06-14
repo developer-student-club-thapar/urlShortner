@@ -19,7 +19,6 @@ const App = () => {
         <GlobalStyles />
         <div className="Rect4Stack">
           <div className="Rect4">
-            <span className="PoweredByDscTiet">Powered By DSC TIET</span>
             <div className="Switch">
               <Switch onClick={themeToggler}>Switch Theme</Switch>
             </div>
@@ -31,5 +30,5 @@ const App = () => {
     </ThemeProvider>
   );
 };
-
+//<span className="PoweredByDscTiet">Powered By DSC TIET</span>
 export default App;

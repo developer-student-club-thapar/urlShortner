@@ -4,7 +4,6 @@ import styled from 'styled-components';
 function MaterialHelperTextBox(props) {
   return (
     <Container {...props}>
-      <StackedLabel>{props.stackedLabel || 'StackedLabel'}</StackedLabel>
       <InputStyle placeholder={props.inputStyle || 'Input'}></InputStyle>
     </Container>
   );
@@ -14,17 +13,7 @@ const Container = styled.div`
   display: flex;
   background-color: transparent;
   flex-direction: column;
-`;
-
-const StackedLabel = styled.span`
-  font-family: Roboto;
-  font-size: 32px;
-  text-align: justify;
-  color: rgba(255, 255, 255, 1);
-  opacity: 0.6;
-  padding-top: 16px;
-  font-style: normal;
-  font-weight: 700;
+  outline: none;
 `;
 
 const InputStyle = styled.input`
@@ -34,21 +23,21 @@ const InputStyle = styled.input`
   align-self: stretch;
   line-height: 16px;
   padding-top: 8px;
-  padding-left: 20px;
+  padding-left: 50px;
   flex: 1 1 0%;
   padding-bottom: 8px;
-  width: 698px;
+  width: 1298px;
   font-style: normal;
   font-weight: regular;
   text-align: justify;
-  background-color: rgba(230, 230, 230, 0.68);
+  background-color: rgba(230, 230, 230, 0.88);
   border-width: 1px;
-  border-color: rgba(74, 144, 226, 1);
+  border-radius: 100px;
   opacity: 0.85;
   border-style: solid;
   display: flex;
   flex-direction: column;
-  box-shadow: 5px 5px 20px 0.44px rgba(0, 0, 0, 1);
+  box-shadow: 5px 5px 5px 0.44px rgba(0, 0, 0, 1);
 `;
 
 export default MaterialHelperTextBox;
