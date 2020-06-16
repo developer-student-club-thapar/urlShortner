@@ -4,7 +4,7 @@ import styled from 'styled-components';
 function MaterialHelperTextBox(props) {
   return (
     <Container {...props}>
-      <InputStyle placeholder={props.inputStyle || 'Input'}></InputStyle>
+      <InputStyle placeholder={props.inputStyle}></InputStyle>
     </Container>
   );
 }
@@ -13,7 +13,6 @@ const Container = styled.div`
   display: flex;
   background-color: transparent;
   flex-direction: column;
-  outline: none;
 `;
 
 const InputStyle = styled.input`
@@ -31,13 +30,13 @@ const InputStyle = styled.input`
   font-weight: regular;
   text-align: justify;
   background-color: rgba(230, 230, 230, 0.88);
-  border-width: 1px;
+  border-width: 0.5px;
   border-radius: 100px;
   opacity: 0.85;
   border-style: solid;
   display: flex;
   flex-direction: column;
-  box-shadow: 5px 5px 5px 0.44px rgba(0, 0, 0, 1);
+  box-shadow: 5px 5px 5px 0.2px rgba(0, 0, 0, 0.7);
 `;
 
 export default MaterialHelperTextBox;

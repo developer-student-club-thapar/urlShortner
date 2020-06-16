@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import Snackbar from '@material-ui/core/Snackbar';
-
+import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import MaterialHelperTextBox from '../components/MaterialHelperTextBox';
-import InputLabel from '@material-ui/core/InputLabel';
+import TextField from '@material-ui/core/TextField';
 import Zoom from '@material-ui/core/Zoom';
 import Fade from '@material-ui/core/Fade';
 import MaterialUnderlineTextbox from '../components/MaterialUnderlineTextbox';
@@ -16,6 +16,16 @@ import MaterialButtonDark from '../components/MaterialButtonDark';
 import Alert from '@material-ui/lab/Alert';
 var QRCode = require('qrcode.react');
 
+const keywords = [
+  {
+    value: 'dsctiet',
+    label: 'dsctiet',
+  },
+  {
+    value: '',
+    label: 'lorem ipsum',
+  },
+];
 class HomeScreen extends Component {
   state = {
     longUrl: '',
@@ -40,6 +50,12 @@ class HomeScreen extends Component {
     event.preventDefault();
     this.setState({
       copyButton: true,
+      copyAlert: true,
+    });
+  };
+  handleKeyword = event => {
+    this.setState({
+      keyword: event.target.value,
     });
   };
 
@@ -49,6 +65,7 @@ class HomeScreen extends Component {
     }
     this.setState({
       error: '',
+      copyAlert: false,
     });
   };
 
@@ -88,32 +105,54 @@ class HomeScreen extends Component {
 
   render() {
     const { copyButton } = this.state;
+    const { copyAlert } = this.state;
     const { error } = this.state;
     const { submitButton } = this.state;
     return (
       <Container>
         <Rect gradientImage="Gradient_BTNZaAY.png">
           <form noValidate autoComplete="off">
-            <MaterialHelperTextBox
-              inputStyle="Enter the URL"
-              style={{
-                height: 72,
-                width: 1477,
-                position: 'absolute',
-                left: 301,
-                top: 70,
-                borderRadius: 100,
-              }}
-              value={this.state.longUrl}
-              onChange={this.handleChange}
-            ></MaterialHelperTextBox>
-            <Rect6>
-              <InputLabel>Select Keyword</InputLabel>
-              <Select value={this.state.keyword} onChange={this.handleKeyword}>
-                <MenuItem value={'dsctiet'}>dsctiet</MenuItem>
-                <MenuItem value={'lorem ipsum'}>lorem ipsum</MenuItem>
-              </Select>
-            </Rect6>
+            <FormControl>
+              <MaterialHelperTextBox
+                inputStyle="Enter the URL"
+                style={{
+                  height: 72,
+                  width: 1477,
+                  position: 'absolute',
+                  left: 301,
+                  top: 70,
+                  borderRadius: 100,
+                }}
+                value={this.state.longUrl}
+                onChange={this.handleChange}
+              ></MaterialHelperTextBox>
+            </FormControl>
+            <FormControl>
+              <TextField
+                select
+                label="Keyword"
+                style={{
+                  height: 64,
+                  width: 125,
+                  position: 'absolute',
+                  left: 450,
+                  top: 180,
+                  background: 'rgba(230, 230, 230, 0.88)',
+                  disableUnderline: true,
+                }}
+                required
+                value={this.state.keyword}
+                onChange={this.handleKeyword}
+                variant="filled"
+              >
+                {keywords.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </FormControl>
+
             <MaterialButtonSuccess
               style={{
                 height: 72,
@@ -133,10 +172,10 @@ class HomeScreen extends Component {
               open={error}
               TransitionComponent={Zoom}
               anchorOrigin={{
-                vertical: 'top',
+                vertical: 'bottom',
                 horizontal: 'center',
               }}
-              autoHideDuration={3000}
+              autoHideDuration={6000}
               onClose={this.handleClose}
             >
               <Alert
@@ -157,7 +196,7 @@ class HomeScreen extends Component {
                     width: 748,
                     position: 'absolute',
                     left: 492,
-                    top: 186,
+                    top: 286,
                     borderWidth: 1,
                     borderColor: 'rgba(255,255,255,1)',
                     borderStyle: 'solid',
@@ -174,8 +213,9 @@ class HomeScreen extends Component {
                       width: 107,
                       position: 'absolute',
                       left: 1129,
-                      top: 186,
+                      top: 286,
                       borderWidth: 1,
+
                       elevation: 0,
                       cursor: 'pointer',
                     }}
@@ -184,33 +224,37 @@ class HomeScreen extends Component {
               </Rect7>
             </Fade>
           )}
+          {copyAlert && (
+            <Snackbar
+              open={copyButton}
+              TransitionComponent={Zoom}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+              autoHideDuration={6000}
+              onClose={this.handleClose}
+            >
+              <Alert
+                variant="filled"
+                severity="info"
+                onClose={this.handleClose}
+              >
+                Copied to Clipboard !
+              </Alert>
+            </Snackbar>
+          )}
           {copyButton && (
             <Zoom in={copyButton}>
               <QRCode
                 value={this.state.shortUrl}
                 style={{
                   position: 'absolute',
-                  left: 1500,
-                  top: 91,
+                  left: 1400,
+                  top: 181,
                 }}
               />
             </Zoom>
-          )}
-          {copyButton && (
-            <div
-              style={{
-                top: 271,
-                left: 1171,
-                width: 295,
-                height: 44,
-                position: 'absolute',
-                background: 'rgba(15, 15, 15, 0.45)',
-              }}
-            >
-              <Alert variant="filled" severity="info">
-                Copied to Clipboard !
-              </Alert>
-            </div>
           )}
           ,
         </Rect>
@@ -243,7 +287,7 @@ const Rect = styled.div`
   width: 1974;
   height: 346px;
   position: absolute;
-  overflow: hidden;
+
   flex-direction: column;
   margin-top: 132px;
   position: relative;
@@ -258,13 +302,24 @@ const Rect7 = styled.div`
   position: absolute;
   border-radius: 100px;
 `;
-
+const keywordInput = styled.input`
+    border-radius: 100px,
+    position: 'relative',
+    background-color: rgba(230, 230, 230, 0.88);
+    border: '1px solid #ced4da',
+    font-size: 16px;
+    padding: '10px 26px 10px 12px';
+    display: flex;
+    flex-direction: column;
+`;
 const Rect6 = styled.div`
-  top: 161px;
-  left: 567px;
-  width: 281px;
-  height: 61px;
-  position: absolute;
+height: 64,
+width: 125,
+position: 'absolute',
+left: 450,
+top: 180,
+borderRadius: 100,
+background: 'rgba(230, 230, 230, 0.88)',
 `;
 
 export default HomeScreen;
