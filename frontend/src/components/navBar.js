@@ -11,19 +11,19 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
   title: {
     flexGrow: 1,
+    marginRight: theme.spacing(5),
   },
   logo: {
+    marginLeft: theme.spacing(15),
     height: '30px',
     objectFit: 'contain',
+    cursor: 'pointer',
   },
 }));
 const logo = require('../assets/images/dsc_logo.png');
-export default function ButtonAppBar() {
+export default function NavBar() {
   const classes = useStyles();
   const [theme, setTheme] = useState('light');
   const themeToggler = () => {
@@ -42,7 +42,14 @@ export default function ButtonAppBar() {
         >
           <Toolbar>
             <img src={logo} className={classes.logo} alt="logo" id="logo" />
-            <Typography variant="h6" className={classes.title}>
+            <Typography
+              variant="h6"
+              className={classes.title}
+              onClick={() => {
+                window.open('https://dsctiet.tech/');
+              }}
+            >
+              {' '}
               &nbsp; DSC TIET
             </Typography>
             <Typography variant="h6" className={classes.title}>

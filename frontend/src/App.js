@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import HomeScreen from './screens/Home';
-import ButtonAppBar from './components/navBar';
-
+import NavBar from './components/navBar';
+import FooterAlt from './components/Footer';
 const App = () => {
   return (
     <div className="App">
-      <ButtonAppBar />
+      <NavBar />
       <HomeScreen />
+      <FooterAlt />
     </div>
   );
 };

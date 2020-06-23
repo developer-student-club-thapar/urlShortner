@@ -118,7 +118,7 @@ class HomeScreen extends Component {
                 style={{
                   height: 62,
                   position: 'absolute',
-                  left: 291,
+                  left: 251,
                   top: 60,
                   borderRadius: 100,
                 }}

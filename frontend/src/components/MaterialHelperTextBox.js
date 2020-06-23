@@ -25,7 +25,7 @@ const InputStyle = styled.input`
   padding-left: 50px;
   flex: 1 1 0%;
   padding-bottom: 8px;
-  width: 898px;
+  width: 948px;
   font-style: normal;
   font-weight: regular;
   text-align: justify;
