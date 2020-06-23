@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './components/globalStyles';
 import { lightTheme, darkTheme } from './components/Themes';
-import Switch from '@material-ui/core/Switch';
 import './App.css';
 import HomeScreen from './screens/Home';
+import ButtonAppBar from './components/navBar';
 
 const App = () => {
   const [theme, setTheme] = useState('light');
@@ -15,18 +15,9 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-      <>
-        <GlobalStyles />
-        <div className="Rect4Stack">
-          <div className="Rect4">
-            <div className="Switch">
-              <Switch onClick={themeToggler}>Switch Theme</Switch>
-            </div>
-          </div>
-          <span className="UrlShortner">URL Shortner</span>
-        </div>
-        <HomeScreen />
-      </>
+      <GlobalStyles />
+      <ButtonAppBar />
+      <HomeScreen />
     </ThemeProvider>
   );
 };

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Snackbar from '@material-ui/core/Snackbar';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+
 import MenuItem from '@material-ui/core/MenuItem';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import MaterialHelperTextBox from '../components/MaterialHelperTextBox';
@@ -110,17 +110,16 @@ class HomeScreen extends Component {
     const { submitButton } = this.state;
     return (
       <Container>
-        <Rect gradientImage="Gradient_BTNZaAY.png">
+        <Rect>
           <form noValidate autoComplete="off">
             <FormControl>
               <MaterialHelperTextBox
                 inputStyle="Enter the URL"
                 style={{
-                  height: 72,
-                  width: 1477,
+                  height: 62,
                   position: 'absolute',
-                  left: 301,
-                  top: 70,
+                  left: 291,
+                  top: 60,
                   borderRadius: 100,
                 }}
                 value={this.state.longUrl}
@@ -152,14 +151,13 @@ class HomeScreen extends Component {
                 ))}
               </TextField>
             </FormControl>
-
             <MaterialButtonSuccess
               style={{
-                height: 72,
+                height: 62,
                 width: 138,
                 position: 'absolute',
-                left: 1485,
-                top: 70,
+                left: 1085,
+                top: 60,
                 overflow: 'hidden',
                 cursor: 'pointer',
                 background: 'rgba(1, 87, 155, 100)',
@@ -267,21 +265,9 @@ const Container = styled.div`
   display: flex;
   background: transparent;
   flex-direction: column;
-  height: 100vh;
-  width: 100vw;
+  height: 90vh;
+  width: 90vw;
 `;
-/*const Image = styled.div`
-  top: 0px;
-  left: 0px;
-  width: 1940px;
-  height: 1080px;
-  position: absolute;
-  flex-direction: column;
-  display: flex;
-  background-image: url(${require('../assets/images/background.png')});
-  background-size: cover;
-  overflow: hidden;
-`;*/
 
 const Rect = styled.div`
   width: 1974;
@@ -302,16 +288,7 @@ const Rect7 = styled.div`
   position: absolute;
   border-radius: 100px;
 `;
-const keywordInput = styled.input`
-    border-radius: 100px,
-    position: 'relative',
-    background-color: rgba(230, 230, 230, 0.88);
-    border: '1px solid #ced4da',
-    font-size: 16px;
-    padding: '10px 26px 10px 12px';
-    display: flex;
-    flex-direction: column;
-`;
+
 const Rect6 = styled.div`
 height: 64,
 width: 125,

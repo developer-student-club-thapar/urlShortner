@@ -11,11 +11,9 @@ function MaterialButtonSuccess(props) {
 
 const Container = styled.div`
   display: flex;
-
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  min-width: 88px;
   padding-left: 16px;
   padding-right: 16px;
   border-width: 0.5px;
@@ -26,7 +24,7 @@ const Container = styled.div`
 const Shorten = styled.span`
   font-family: Roboto;
   color: #fff;
-  font-size: 25px;
+  font-size: 22px;
   margin: 0px;
   font-style: normal;
   font-weight: regular;
