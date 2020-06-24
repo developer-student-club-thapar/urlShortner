@@ -135,7 +135,7 @@ class HomeScreen extends Component {
                   width: 125,
                   position: 'absolute',
                   left: 450,
-                  top: 180,
+                  top: 160,
                   background: 'rgba(230, 230, 230, 0.88)',
                   disableUnderline: true,
                 }}
@@ -190,10 +190,10 @@ class HomeScreen extends Component {
               <Rect7>
                 <MaterialUnderlineTextbox
                   style={{
-                    height: 59,
-                    width: 748,
+                    height: 49,
+                    width: 388,
                     position: 'absolute',
-                    left: 492,
+                    left: 472,
                     top: 286,
                     borderWidth: 1,
                     borderColor: 'rgba(255,255,255,1)',
@@ -207,10 +207,10 @@ class HomeScreen extends Component {
                   <MaterialButtonDark
                     onClick={this.handleCopy}
                     style={{
-                      height: 61,
+                      height: 51,
                       width: 107,
                       position: 'absolute',
-                      left: 1129,
+                      left: 842,
                       top: 286,
                       borderWidth: 1,
 
@@ -248,7 +248,7 @@ class HomeScreen extends Component {
                 value={this.state.shortUrl}
                 style={{
                   position: 'absolute',
-                  left: 1400,
+                  left: 1100,
                   top: 181,
                 }}
               />

@@ -15,13 +15,9 @@ const FooterAlt = () => {
           backgroundColor: 'inherit',
         }}
       >
-        <Container fixed>
+        <Container>
           <Grid>
-            <h6
-              style={{
-                color: 'inherit',
-              }}
-            >
+            <h6>
               © Copyright 2020{' '}
               <span style={{ fontWeight: '500' }}>
                 DSC TIET | Developed with
