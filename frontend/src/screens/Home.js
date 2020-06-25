@@ -23,7 +23,7 @@ const keywords = [
   },
   {
     value: '',
-    label: 'lorem ipsum',
+    label: 'other',
   },
 ];
 class HomeScreen extends Component {
@@ -86,16 +86,17 @@ class HomeScreen extends Component {
       });
 
       const responseData = await response.json();
-      if (typeof responseData == 'object') {
+
+      if (typeof responseData.error !== 'undefined') {
         this.setState({
-          shortUrl: responseData.shortUrl,
-          submitButton: true,
+          error: responseData.error,
+          submitButton: false,
         });
-        console.log(responseData.keyword);
-      } else {
-        console.log(responseData);
+      }
+      if (typeof responseData.link !== 'undefined') {
         this.setState({
-          error: responseData,
+          shortUrl: responseData.link,
+          submitButton: true,
         });
       }
     } catch (err) {
