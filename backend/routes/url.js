@@ -32,7 +32,7 @@ router.post('/shorten', async (req, res) => {
     res.send(response_json);
   } else {
     const fetch_response = await fetch(
-      'https://kutt.it/api/v2/links?apikey=_~4s2GF2qqJfbsfLeJWgjryfSN7Hk1zDB6D~YH7Q',
+      'https://kutt.it/api/v2/links?apikey=***',
       {
         method: 'POST',
         headers: {
