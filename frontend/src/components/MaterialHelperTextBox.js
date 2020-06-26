@@ -22,7 +22,7 @@ const InputStyle = styled.input`
   align-self: stretch;
   line-height: 16px;
   padding-top: 8px;
-  padding-left: 50px;
+  padding-left: 10px;
   flex: 1 1 0%;
   padding-bottom: 8px;
 

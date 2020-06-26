@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-
 import Snackbar from '@material-ui/core/Snackbar';
 import FormControl from '@material-ui/core/FormControl';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import MenuItem from '@material-ui/core/MenuItem';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -19,7 +17,7 @@ var QRCode = require('qrcode.react');
 
 const keywords = [
   {
-    value: 'dsctiet',
+    value: 'dsctiet.tech',
     label: 'dsctiet',
   },
   {
@@ -115,7 +113,7 @@ class HomeScreen extends Component {
         <Rect>
           <Grid container>
             <Grid item xs={3} sm={3} md={3} />
-            <Grid item xs={10} sm={5} md={5} lg={5} xl={2}>
+            <Grid item xs={8} sm={5} md={5} lg={5} xl={2}>
               <form noValidate autoComplete="off">
                 <FormControl>
                   <MaterialHelperTextBox
@@ -124,7 +122,8 @@ class HomeScreen extends Component {
                       height: 62,
                       position: 'absolute',
                       top: 60,
-                      borderRadius: 100,
+                      width: 500,
+                      overflow: 'hidden',
                     }}
                     value={this.state.longUrl}
                     onChange={this.handleChange}
@@ -146,7 +145,7 @@ class HomeScreen extends Component {
                 onClick={this.handleSubmit}
               ></MaterialButtonSuccess>
             </Grid>
-            <Grid item xs={5} sm={5} md={5} />
+            <Grid item xs={10} sm={5} md={5} />
             <Grid item xs={7}>
               <FormControl>
                 <TextField
@@ -155,10 +154,11 @@ class HomeScreen extends Component {
                   style={{
                     height: 62,
                     position: 'absolute',
-                    width: 120,
-                    top: 130,
+                    width: 100,
+                    top: 38,
                     background: 'rgba(230, 230, 230, 0.88)',
                     disableUnderline: true,
+                    left: 270,
                   }}
                   required
                   value={this.state.keyword}
@@ -296,7 +296,7 @@ const Rect7 = styled.div`
   border-radius: 100px;
 `;
 
-const Rect6 = styled.div`
+/*const Rect6 = styled.div`
 height: 64,
 width: 125,
 position: 'absolute',
@@ -304,6 +304,6 @@ left: 450,
 top: 180,
 borderRadius: 100,
 background: 'rgba(230, 230, 230, 0.88)',
-`;
+`;*/
 
 export default HomeScreen;

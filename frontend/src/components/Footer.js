@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { Container } from '@material-ui/core';
 
-const FooterAlt = () => {
+const Footer = () => {
   return (
     <Fragment>
       <Paper
@@ -13,6 +13,8 @@ const FooterAlt = () => {
           borderWidth: '1px 0px 0px 0px',
           borderColor: 'grey',
           backgroundColor: 'inherit',
+          color: ' inherit',
+          width: '100%',
         }}
       >
         <Container>
@@ -31,4 +33,4 @@ const FooterAlt = () => {
   );
 };
 
-export default FooterAlt;
+export default Footer;

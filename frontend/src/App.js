@@ -2,13 +2,13 @@ import React from 'react';
 import './App.css';
 import HomeScreen from './screens/Home';
 import NavBar from './components/navBar';
-import FooterAlt from './components/Footer';
+import Footer from './components/Footer';
 const App = () => {
   return (
     <div className="App">
       <NavBar />
       <HomeScreen />
-      <FooterAlt />
+      <Footer />
     </div>
   );
 };
