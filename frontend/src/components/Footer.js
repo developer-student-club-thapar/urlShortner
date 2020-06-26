@@ -15,6 +15,9 @@ const Footer = () => {
           backgroundColor: 'inherit',
           color: ' inherit',
           width: '100%',
+          position: 'fixed',
+          overflowX: 'hidden',
+          textAlign: 'right',
         }}
       >
         <Container>

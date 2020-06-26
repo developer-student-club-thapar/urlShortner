@@ -14,7 +14,7 @@ import MaterialButtonSuccess from '../components/MaterialButtonSuccess';
 import MaterialButtonDark from '../components/MaterialButtonDark';
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
-import Typography from '@material-ui/core/Typography';
+//import CheckBox from '@material-ui/core/Checkbox';
 var QRCode = require('qrcode.react');
 
 const keywords = [
@@ -52,6 +52,7 @@ class HomeScreen extends Component {
       customurl: '',
       submitButton: false,
       copyButton: false,
+      cusUrlCheck: false,
     });
     // console.log(event.target.value);
   };
@@ -69,8 +70,8 @@ class HomeScreen extends Component {
 
   handleCustomurl = event => {
     this.setState({
-      customUrl: event.target.value,
-      cusUrlButton: true,
+      customurl: event.target.value,
+      cusUrlCheck: true,
     });
   };
 
@@ -124,7 +125,7 @@ class HomeScreen extends Component {
     const { copyAlert } = this.state;
     const { error } = this.state;
     const { submitButton } = this.state;
-    const { cusUrlButton } = this.state;
+    const { cusUrlCheck } = this.state;
     return (
       <Container>
         <Rect>
@@ -178,22 +179,24 @@ class HomeScreen extends Component {
                   Custom Url ?
                 </Button>
               </span>
-              {cusUrlButton && (
-                <TextField
-                  label="Custom url"
-                  value={this.state.customUrl}
-                  onChange={this.handleCustomurl}
-                  style={{
-                    height: 62,
-                    position: 'absolute',
-                    width: 200,
-                    top: 140,
-                    background: 'rgba(230, 230, 230, 0.88)',
-                    disableUnderline: true,
-                    left: 600,
-                  }}
-                  variant="filled"
-                ></TextField>
+              {cusUrlCheck && (
+                <Fade in={cusUrlCheck}>
+                  <TextField
+                    label="Custom url"
+                    value={this.state.customUrl}
+                    onChange={this.handleCustomurl}
+                    style={{
+                      height: 62,
+                      position: 'absolute',
+                      width: 200,
+                      top: 140,
+                      background: 'rgba(230, 230, 230, 0.88)',
+                      disableUnderline: true,
+                      left: 600,
+                    }}
+                    variant="filled"
+                  ></TextField>
+                </Fade>
               )}
             </FormControl>
             <MaterialButtonSuccess
