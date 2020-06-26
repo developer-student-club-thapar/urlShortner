@@ -12,17 +12,15 @@ router.post('/shorten', async (req, res) => {
   const { longUrl } = req.body;
   const { keyword } = req.body;
   const { customurl } = req.body;
-
+  const apifetch =
+    'https://kutt.it/api/v2/links?apikey=HdPRiaCzWa77BaJJO0hHAZxHoYJbTQE2e7AflPpk';
   if (customurl === '') {
-    const fetch_response_all = await fetch(
-      'https://kutt.it/api/v2/links?apikey=**',
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+    const fetch_response_all = await fetch(apifetch, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
       },
-    );
+    });
     var link = '';
     var ans;
     const response_json_all = await fetch_response_all.json();
@@ -38,26 +36,7 @@ router.post('/shorten', async (req, res) => {
     if (link !== '') {
       res.send(ans);
     } else {
-      const fetch_response = await fetch(
-        'https://kutt.it/api/v2/links?apikey=**',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            target: longUrl,
-            domain: 'dsctiet.tech',
-          }),
-        },
-      );
-      const response_json = await fetch_response.json();
-      res.send(response_json);
-    }
-  } else {
-    const fetch_response = await fetch(
-      'https://kutt.it/api/v2/links?apikey=**',
-      {
+      const fetch_response = await fetch(apifetch, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -65,10 +44,23 @@ router.post('/shorten', async (req, res) => {
         body: JSON.stringify({
           target: longUrl,
           domain: 'dsctiet.tech',
-          customurl: customurl,
         }),
+      });
+      const response_json = await fetch_response.json();
+      res.send(response_json);
+    }
+  } else {
+    const fetch_response = await fetch(apifetch, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
-    );
+      body: JSON.stringify({
+        target: longUrl,
+        domain: 'dsctiet.tech',
+        customurl: customurl,
+      }),
+    });
     const response_json = await fetch_response.json();
     res.send(response_json);
   }

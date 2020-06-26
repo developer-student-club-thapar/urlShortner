@@ -12,16 +12,22 @@ import Fade from '@material-ui/core/Fade';
 import MaterialUnderlineTextbox from '../components/MaterialUnderlineTextbox';
 import MaterialButtonSuccess from '../components/MaterialButtonSuccess';
 import MaterialButtonDark from '../components/MaterialButtonDark';
+import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
+import Typography from '@material-ui/core/Typography';
 var QRCode = require('qrcode.react');
 
 const keywords = [
+  {
+    value: 'google.in',
+    label: 'google',
+  },
   {
     value: 'dsctiet.tech',
     label: 'dsctiet',
   },
   {
-    value: '',
+    value: 'other.com',
     label: 'other',
   },
 ];
@@ -43,6 +49,9 @@ class HomeScreen extends Component {
     this.setState({
       longUrl: event.target.value,
       shortUrl: '',
+      customurl: '',
+      submitButton: false,
+      copyButton: false,
     });
     // console.log(event.target.value);
   };
@@ -58,9 +67,10 @@ class HomeScreen extends Component {
     });
   };
 
-  handlecustomurl = event => {
+  handleCustomurl = event => {
     this.setState({
-      customurl: event.target.value,
+      customUrl: event.target.value,
+      cusUrlButton: true,
     });
   };
 
@@ -114,30 +124,25 @@ class HomeScreen extends Component {
     const { copyAlert } = this.state;
     const { error } = this.state;
     const { submitButton } = this.state;
+    const { cusUrlButton } = this.state;
     return (
       <Container>
         <Rect>
           <form noValidate autoComplete="off">
             <FormControl>
-              <TextField
-                label="Custom url"
-                value={this.state.customurl}
-                onChange={this.handlecustomurl}
-              ></TextField>
               <MaterialHelperTextBox
                 inputStyle="Enter the URL"
                 style={{
                   height: 62,
-                  width: 550,
+                  width: 650,
                   position: 'absolute',
-                  left: 500,
+                  left: 300,
                   top: 60,
                   borderRadius: 100,
                 }}
                 value={this.state.longUrl}
                 onChange={this.handleChange}
               ></MaterialHelperTextBox>
-
               <TextField
                 select
                 label="Domain"
@@ -145,9 +150,10 @@ class HomeScreen extends Component {
                   height: 62,
                   position: 'absolute',
                   width: 120,
-                  top: 130,
+                  top: 60,
                   background: 'rgba(230, 230, 230, 0.88)',
                   disableUnderline: true,
+                  left: 970,
                 }}
                 required
                 value={this.state.keyword}
@@ -160,13 +166,42 @@ class HomeScreen extends Component {
                   </MenuItem>
                 ))}
               </TextField>
+              <span style={{ fontWeight: '100' }}>
+                <Button
+                  onClick={this.handleCustomurl}
+                  style={{
+                    top: 140,
+                    left: 400,
+                    color: 'inherit',
+                  }}
+                >
+                  Custom Url ?
+                </Button>
+              </span>
+              {cusUrlButton && (
+                <TextField
+                  label="Custom url"
+                  value={this.state.customUrl}
+                  onChange={this.handleCustomurl}
+                  style={{
+                    height: 62,
+                    position: 'absolute',
+                    width: 200,
+                    top: 140,
+                    background: 'rgba(230, 230, 230, 0.88)',
+                    disableUnderline: true,
+                    left: 600,
+                  }}
+                  variant="filled"
+                ></TextField>
+              )}
             </FormControl>
             <MaterialButtonSuccess
               style={{
                 height: 62,
                 width: 138,
                 position: 'absolute',
-                left: 1085,
+                left: 1095,
                 top: 60,
                 overflow: 'hidden',
                 cursor: 'pointer',
@@ -196,6 +231,7 @@ class HomeScreen extends Component {
               </Alert>
             </Snackbar>
           )}
+
           {submitButton && (
             <Fade in={submitButton}>
               <Rect7>

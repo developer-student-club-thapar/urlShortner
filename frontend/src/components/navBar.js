@@ -62,7 +62,7 @@ export default function NavBar() {
             </Typography>
             <Typography variant="h6" className={classes.title}>
               URL Shortener
-              <Switch onClick={themeToggler} />
+              <Switch onClick={themeToggler} color="primary" />
             </Typography>
           </Toolbar>
         </AppBar>
