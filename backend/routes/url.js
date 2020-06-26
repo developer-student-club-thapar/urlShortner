@@ -12,7 +12,6 @@ router.post('/shorten', async (req, res) => {
   const { longUrl } = req.body;
   const { keyword } = req.body;
   const { customurl } = req.body;
-  console.log(customurl);
   const apifetch =
     'https://kutt.it/api/v2/links?apikey=HdPRiaCzWa77BaJJO0hHAZxHoYJbTQE2e7AflPpk';
   if (customurl === '') {
