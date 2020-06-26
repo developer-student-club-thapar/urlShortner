@@ -41,9 +41,17 @@ export default function NavBar() {
           className="fill"
         >
           <Toolbar>
-            <img src={logo} className={classes.logo} alt="logo" id="logo" />
+            <img
+              src={logo}
+              className={classes.logo}
+              alt="logo"
+              id="logo"
+              onClick={() => {
+                window.open('https://dsctiet.tech/');
+              }}
+            />
             <Typography
-              variant="h6"
+              variant="h7"
               className={classes.title}
               onClick={() => {
                 window.open('https://dsctiet.tech/');

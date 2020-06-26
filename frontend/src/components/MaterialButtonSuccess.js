@@ -17,7 +17,7 @@ const Container = styled.div`
   padding-left: 16px;
   padding-right: 16px;
   border-width: 0.5px;
-  border-radius: 0px 100px 100px 0px;
+  border-radius: 0px 0px 0px 0px;
 `;
 
 const Shorten = styled.span`
