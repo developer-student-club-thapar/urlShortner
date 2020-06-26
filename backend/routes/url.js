@@ -11,23 +11,67 @@ const fetch = require('node-fetch');
 router.post('/shorten', async (req, res) => {
   const { longUrl } = req.body;
   const { keyword } = req.body;
-  const baseUrl = config.get('baseUrl');
+  const { customurl } = req.body;
 
-  const fetch_response = await fetch(
-    'https://kutt.it/api/v2/links?apikey=_~4s2GF2qqJfbsfLeJWgjryfSN7Hk1zDB6D~YH7Q',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+  if (customurl === '') {
+    const fetch_response_all = await fetch(
+      'https://kutt.it/api/v2/links?apikey=**',
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       },
-      body: JSON.stringify({
-        target: longUrl,
-        domain: 'dsctiet.tech',
-      }),
-    },
-  );
-  const response_json = await fetch_response.json();
-  res.send(response_json);
+    );
+    var link = '';
+    var ans;
+    const response_json_all = await fetch_response_all.json();
+    var data = response_json_all.data;
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].target === longUrl) {
+        link = data[i].link;
+        ans = data[i];
+        break;
+      }
+    }
+    // console.log(link);
+    if (link !== '') {
+      res.send(ans);
+    } else {
+      const fetch_response = await fetch(
+        'https://kutt.it/api/v2/links?apikey=**',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            target: longUrl,
+            domain: 'dsctiet.tech',
+          }),
+        },
+      );
+      const response_json = await fetch_response.json();
+      res.send(response_json);
+    }
+  } else {
+    const fetch_response = await fetch(
+      'https://kutt.it/api/v2/links?apikey=**',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          target: longUrl,
+          domain: 'dsctiet.tech',
+          customurl: customurl,
+        }),
+      },
+    );
+    const response_json = await fetch_response.json();
+    res.send(response_json);
+  }
 });
 
 module.exports = router;

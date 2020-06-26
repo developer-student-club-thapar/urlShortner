@@ -31,6 +31,7 @@ class HomeScreen extends Component {
     shortUrl: '',
     error: '',
     keyword: '',
+    customurl: '',
   };
   handleKeyword = event => {
     this.setState({
@@ -46,7 +47,6 @@ class HomeScreen extends Component {
     // console.log(event.target.value);
   };
   handleCopy = event => {
-    event.preventDefault();
     this.setState({
       copyButton: true,
       copyAlert: true,
@@ -55,6 +55,12 @@ class HomeScreen extends Component {
   handleKeyword = event => {
     this.setState({
       keyword: event.target.value,
+    });
+  };
+
+  handlecustomurl = event => {
+    this.setState({
+      customurl: event.target.value,
     });
   };
 
@@ -69,7 +75,6 @@ class HomeScreen extends Component {
   };
 
   handleSubmit = async event => {
-    // console.log(this.state.longUrl);
     event.preventDefault();
 
     try {
@@ -81,6 +86,7 @@ class HomeScreen extends Component {
         body: JSON.stringify({
           longUrl: this.state.longUrl,
           keyword: this.state.keyword,
+          customurl: this.state.customurl,
         }),
       });
 
@@ -111,157 +117,153 @@ class HomeScreen extends Component {
     return (
       <Container>
         <Rect>
-          <Grid container>
-            <Grid item xs={3} sm={3} md={3} />
-            <Grid item xs={8} sm={5} md={5} lg={5} xl={2}>
-              <form noValidate autoComplete="off">
-                <FormControl>
-                  <MaterialHelperTextBox
-                    inputStyle="Enter the URL"
-                    style={{
-                      height: 62,
-                      position: 'absolute',
-                      top: 60,
-                      width: 500,
-                      overflow: 'hidden',
-                    }}
-                    value={this.state.longUrl}
-                    onChange={this.handleChange}
-                  ></MaterialHelperTextBox>
-                </FormControl>
-              </form>
-            </Grid>
-            <Grid item xs={1} md={1}>
-              <MaterialButtonSuccess
+          <form noValidate autoComplete="off">
+            <FormControl>
+              <TextField
+                label="Custom url"
+                value={this.state.customurl}
+                onChange={this.handlecustomurl}
+              ></TextField>
+              <MaterialHelperTextBox
+                inputStyle="Enter the URL"
                 style={{
                   height: 62,
-                  top: 60,
-                  width: '10%',
+                  width: 550,
                   position: 'absolute',
-                  overflow: 'hidden',
-                  cursor: 'pointer',
-                  background: 'rgba(1, 87, 155, 100)',
+                  left: 500,
+                  top: 60,
+                  borderRadius: 100,
                 }}
-                onClick={this.handleSubmit}
-              ></MaterialButtonSuccess>
-            </Grid>
-            <Grid item xs={10} sm={5} md={5} />
-            <Grid item xs={7}>
-              <FormControl>
-                <TextField
-                  select
-                  label="Domain"
-                  style={{
-                    height: 62,
-                    position: 'absolute',
-                    width: 100,
-                    top: 38,
-                    background: 'rgba(230, 230, 230, 0.88)',
-                    disableUnderline: true,
-                    left: 270,
-                  }}
-                  required
-                  value={this.state.keyword}
-                  onChange={this.handleKeyword}
-                  variant="filled"
-                >
-                  {keywords.map(option => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
-              </FormControl>
-            </Grid>
-            {error && (
-              <Snackbar
-                open={error}
-                TransitionComponent={Zoom}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'center',
+                value={this.state.longUrl}
+                onChange={this.handleChange}
+              ></MaterialHelperTextBox>
+
+              <TextField
+                select
+                label="Domain"
+                style={{
+                  height: 62,
+                  position: 'absolute',
+                  width: 120,
+                  top: 130,
+                  background: 'rgba(230, 230, 230, 0.88)',
+                  disableUnderline: true,
                 }}
-                autoHideDuration={6000}
-                onClose={this.handleClose}
+                required
+                value={this.state.keyword}
+                onChange={this.handleKeyword}
+                variant="filled"
               >
-                <Alert
-                  onClose={this.handleClose}
-                  severity="warning"
-                  variant="filled"
-                >
-                  {this.state.error}
-                </Alert>
-              </Snackbar>
-            )}
-            {submitButton && (
-              <Fade in={submitButton}>
-                <Rect7>
-                  <MaterialUnderlineTextbox
+                {keywords.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </FormControl>
+            <MaterialButtonSuccess
+              style={{
+                height: 62,
+                width: 138,
+                position: 'absolute',
+                left: 1085,
+                top: 60,
+                overflow: 'hidden',
+                cursor: 'pointer',
+                background: 'rgba(1, 87, 155, 100)',
+              }}
+              onClick={this.handleSubmit}
+            ></MaterialButtonSuccess>
+          </form>
+
+          {error && (
+            <Snackbar
+              open={error}
+              TransitionComponent={Zoom}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+              autoHideDuration={6000}
+              onClose={this.handleClose}
+            >
+              <Alert
+                onClose={this.handleClose}
+                severity="warning"
+                variant="filled"
+              >
+                {this.state.error}
+              </Alert>
+            </Snackbar>
+          )}
+          {submitButton && (
+            <Fade in={submitButton}>
+              <Rect7>
+                <MaterialUnderlineTextbox
+                  style={{
+                    height: 49,
+                    width: 388,
+                    position: 'absolute',
+                    left: 472,
+                    top: 286,
+                    borderWidth: 1,
+                    borderColor: 'rgba(255,255,255,1)',
+                    borderStyle: 'solid',
+                  }}
+                  inputStyle="Short url"
+                  value={this.state.shortUrl}
+                ></MaterialUnderlineTextbox>
+
+                <CopyToClipboard text={this.state.shortUrl}>
+                  <MaterialButtonDark
+                    onClick={this.handleCopy}
                     style={{
-                      height: 49,
-                      width: 388,
+                      height: 51,
+                      width: 107,
                       position: 'absolute',
-                      left: 472,
+                      left: 842,
                       top: 286,
                       borderWidth: 1,
-                      borderColor: 'rgba(255,255,255,1)',
-                      borderStyle: 'solid',
+                      elevation: 0,
+                      cursor: 'pointer',
                     }}
-                    inputStyle="Short url"
-                    value={this.state.shortUrl}
-                  ></MaterialUnderlineTextbox>
-
-                  <CopyToClipboard text={this.state.shortUrl}>
-                    <MaterialButtonDark
-                      onClick={this.handleCopy}
-                      style={{
-                        height: 51,
-                        width: 107,
-                        position: 'absolute',
-                        left: 842,
-                        top: 286,
-                        borderWidth: 1,
-                        elevation: 0,
-                        cursor: 'pointer',
-                      }}
-                    ></MaterialButtonDark>
-                  </CopyToClipboard>
-                </Rect7>
-              </Fade>
-            )}
-            {copyAlert && (
-              <Snackbar
-                open={copyButton}
-                TransitionComponent={Zoom}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'center',
-                }}
-                autoHideDuration={6000}
+                  ></MaterialButtonDark>
+                </CopyToClipboard>
+              </Rect7>
+            </Fade>
+          )}
+          {copyAlert && (
+            <Snackbar
+              open={copyButton}
+              TransitionComponent={Zoom}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+              autoHideDuration={6000}
+              onClose={this.handleClose}
+            >
+              <Alert
+                variant="filled"
+                severity="info"
                 onClose={this.handleClose}
               >
-                <Alert
-                  variant="filled"
-                  severity="info"
-                  onClose={this.handleClose}
-                >
-                  Copied to Clipboard !
-                </Alert>
-              </Snackbar>
-            )}
-            {copyButton && (
-              <Zoom in={copyButton}>
-                <QRCode
-                  value={this.state.shortUrl}
-                  style={{
-                    position: 'absolute',
-                    left: 1100,
-                    top: 181,
-                  }}
-                />
-              </Zoom>
-            )}
-          </Grid>
+                Copied to Clipboard !
+              </Alert>
+            </Snackbar>
+          )}
+          {copyButton && (
+            <Zoom in={copyButton}>
+              <QRCode
+                value={this.state.shortUrl}
+                style={{
+                  position: 'absolute',
+                  left: 1100,
+                  top: 181,
+                }}
+              />
+            </Zoom>
+          )}
         </Rect>
       </Container>
     );
