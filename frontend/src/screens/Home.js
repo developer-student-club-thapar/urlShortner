@@ -32,6 +32,7 @@ class HomeScreen extends Component {
     shortUrl: '',
     error: '',
     keyword: '',
+    customurl: '',
   };
   handleKeyword = event => {
     this.setState({
@@ -47,7 +48,6 @@ class HomeScreen extends Component {
     // console.log(event.target.value);
   };
   handleCopy = event => {
-    event.preventDefault();
     this.setState({
       copyButton: true,
       copyAlert: true,
@@ -56,6 +56,12 @@ class HomeScreen extends Component {
   handleKeyword = event => {
     this.setState({
       keyword: event.target.value,
+    });
+  };
+
+  handlecustomurl = event => {
+    this.setState({
+      customurl: event.target.value,
     });
   };
 
@@ -70,7 +76,6 @@ class HomeScreen extends Component {
   };
 
   handleSubmit = async event => {
-    // console.log(this.state.longUrl);
     event.preventDefault();
 
     try {
@@ -82,6 +87,7 @@ class HomeScreen extends Component {
         body: JSON.stringify({
           longUrl: this.state.longUrl,
           keyword: this.state.keyword,
+          customurl: this.state.customurl,
         }),
       });
 
@@ -114,6 +120,11 @@ class HomeScreen extends Component {
         <Rect>
           <form noValidate autoComplete="off">
             <FormControl>
+              <TextField
+                label="Custom url"
+                value={this.state.customurl}
+                onChange={this.handlecustomurl}
+              ></TextField>
               <MaterialHelperTextBox
                 inputStyle="Enter the URL"
                 style={{

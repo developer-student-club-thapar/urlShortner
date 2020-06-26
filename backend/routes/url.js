@@ -11,23 +11,43 @@ const fetch = require('node-fetch');
 router.post('/shorten', async (req, res) => {
   const { longUrl } = req.body;
   const { keyword } = req.body;
-  const baseUrl = config.get('baseUrl');
+  var { customurl } = req.body;
 
-  const fetch_response = await fetch(
-    'https://kutt.it/api/v2/links?apikey=***',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+  const baseUrl = config.get('baseUrl');
+  if (customurl === '') {
+    const fetch_response = await fetch(
+      'https://kutt.it/api/v2/links?apikey=**',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          target: longUrl,
+          domain: 'dsctiet.tech',
+        }),
       },
-      body: JSON.stringify({
-        target: longUrl,
-        domain: 'dsctiet.tech',
-      }),
-    },
-  );
-  const response_json = await fetch_response.json();
-  res.send(response_json);
+    );
+    const response_json = await fetch_response.json();
+    res.send(response_json);
+  } else {
+    const fetch_response = await fetch(
+      'https://kutt.it/api/v2/links?apikey=_~4s2GF2qqJfbsfLeJWgjryfSN7Hk1zDB6D~YH7Q',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          target: longUrl,
+          domain: 'dsctiet.tech',
+          customurl: customurl,
+        }),
+      },
+    );
+    const response_json = await fetch_response.json();
+    res.send(response_json);
+  }
 });
 
 module.exports = router;
