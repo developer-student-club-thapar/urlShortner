@@ -16,7 +16,7 @@ const Container = styled.div`
   display: flex;
   border-bottom-width: 1px;
   border-color: #121212;
-  border-radius: 100px;
+
   background-color: rgba(170, 201, 206, 1);
   flex-direction: row;
   align-items: center;
@@ -34,7 +34,6 @@ const InputStyle = styled.input`
   padding-left: 40px;
   padding-bottom: 16px;
   border: none;
-  border-radius: 100px;
   background: transparent;
   flex-direction: column;
 `;

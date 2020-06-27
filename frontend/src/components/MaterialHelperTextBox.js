@@ -30,12 +30,10 @@ const InputStyle = styled.input`
   font-weight: regular;
   text-align: justify;
   background-color: rgba(230, 230, 230, 0.88);
-  border-width: 0.5px;
   opacity: 0.85;
-  border-style: solid;
+
   display: flex;
   flex-direction: column;
-  box-shadow: 5px 5px 5px 0.2px rgba(0, 0, 0, 0.7);
 `;
 
 export default MaterialHelperTextBox;
