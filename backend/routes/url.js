@@ -6,15 +6,14 @@ const config = require('config');
 const Url = require('../models/url-model');
 const HttpError = require('../models/http-error');
 const fetch = require('node-fetch');
-require('dotenv').config();
-
 
 // route to shorten the link
 router.post('/shorten', async (req, res) => {
   const { longUrl } = req.body;
   const { keyword } = req.body;
   const { customurl } = req.body;
-  const apifetch = process.env.link;
+  const apifetch =
+    'https://kutt.it/api/v2/links?apikey=9rJG9Lgz7OIt0iDpn9~YSru8QbdcW6~t5JMBRaLp';
   if (customurl === '') {
     const fetch_response_all = await fetch(apifetch, {
       method: 'GET',
