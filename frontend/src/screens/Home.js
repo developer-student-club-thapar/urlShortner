@@ -1,28 +1,23 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import Snackbar from '@material-ui/core/Snackbar';
-import FormControl from '@material-ui/core/FormControl';
-//import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import MaterialHelperTextBox from '../components/MaterialHelperTextBox';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
+import Grid from '@material-ui/core/Grid';
+import { Container } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
-import Zoom from '@material-ui/core/Zoom';
-import Fade from '@material-ui/core/Fade';
 import MaterialUnderlineTextbox from '../components/MaterialUnderlineTextbox';
 import MaterialButtonSuccess from '../components/MaterialButtonSuccess';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import { Container } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import Alert from '@material-ui/lab/Alert';
+import MenuItem from '@material-ui/core/MenuItem';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 import CropFreeIcon from '@material-ui/icons/CropFree';
-//import Typography from '@material-ui/core/Typography';
-var QRCode = require('qrcode.react');
+import Tooltip from '@material-ui/core/Tooltip';
+import Zoom from '@material-ui/core/Zoom';
+import Fade from '@material-ui/core/Fade';
 const illustration = require('../assets/images/illustration.png');
+var QRCode = require('qrcode.react');
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -33,6 +28,7 @@ const useStyles = makeStyles(theme => ({
     cursor: 'pointer',
   },
 }));
+
 const keywords = [
   {
     value: '',
@@ -43,6 +39,7 @@ const keywords = [
     label: 'dsctiet',
   },
 ];
+
 class HomeScreen extends Component {
   state = {
     longUrl: '',
@@ -51,6 +48,7 @@ class HomeScreen extends Component {
     keyword: '',
     customUrl: '',
   };
+
   handleKeyword = event => {
     this.setState({
       keyword: event.target.value,
@@ -65,6 +63,7 @@ class HomeScreen extends Component {
       submitButton: false,
       copyButton: false,
       cusUrlCheck: false,
+      qrButton: false,
     });
     // console.log(event.target.value);
   };
@@ -230,9 +229,9 @@ class HomeScreen extends Component {
           </Grid>
           <Grid item xs />
         </Grid>
-        <Grid container spacing={3} style={{ marginTop: '80px' }}>
+        <Grid container spacing={3} style={{ marginTop: '60px' }}>
           <Grid item xs />
-          <Grid item xs={4}>
+          <Grid item xs={7}>
             <span style={{ fontWeight: '100' }}>
               <Button
                 onClick={this.handleCustomurl}
@@ -251,8 +250,8 @@ class HomeScreen extends Component {
                   onChange={this.handleCustomurl}
                   style={{
                     position: 'absolute',
-                    width: '18%',
-                    marginLeft: '80px',
+                    width: '15%',
+                    marginLeft: '60px',
                     background: 'rgba(230, 230, 230, 0.88)',
                     disableUnderline: true,
                   }}
@@ -288,12 +287,12 @@ class HomeScreen extends Component {
           <Fade in={submitButton}>
             <Grid
               container
-              spacing={2}
+              spacing={3}
               alignItems="center"
-              style={{ marginTop: '20px' }}
+              style={{ marginTop: '60px' }}
             >
               <Grid item xs />
-              <Grid item xs={5}>
+              <Grid item xs={4}>
                 <MaterialUnderlineTextbox
                   style={{
                     height: 49,
@@ -307,19 +306,21 @@ class HomeScreen extends Component {
                   value={this.state.shortUrl}
                 />
                 <CopyToClipboard text={this.state.shortUrl}>
-                  <FileCopyOutlinedIcon
-                    fontSize="medium"
-                    onClick={this.handleCopy}
-                    style={{
-                      position: 'absolute',
-                      elevation: 0,
-                      cursor: 'pointer',
-                      marginTop: '10px',
-                      marginLeft: '330px',
-                      color: '#263238',
-                      cursorText: 'copy',
-                    }}
-                  />
+                  <Tooltip title="Copy" TransitionProps={{ timeout: 600 }}>
+                    <FileCopyOutlinedIcon
+                      fontSize="medium"
+                      onClick={this.handleCopy}
+                      style={{
+                        position: 'absolute',
+                        elevation: 0,
+                        cursor: 'pointer',
+                        marginTop: '10px',
+                        marginLeft: '320px',
+                        color: '#263238',
+                        cursorText: 'copy',
+                      }}
+                    />
+                  </Tooltip>
                 </CopyToClipboard>
                 {copyAlert && (
                   <Snackbar
@@ -341,23 +342,25 @@ class HomeScreen extends Component {
                     </Alert>
                   </Snackbar>
                 )}
-                <CropFreeIcon
-                  fontSize="medium"
-                  onClick={this.handleQr}
-                  style={{
-                    position: 'absolute',
-                    elevation: 0,
-                    cursor: 'pointer',
-                    marginTop: '10px',
-                    marginLeft: '360px',
-                    color: '#263238',
-                    cursorText: 'QR',
-                  }}
-                />
+                <Tooltip title="Get QR" TransitionProps={{ timeout: 600 }}>
+                  <CropFreeIcon
+                    fontSize="medium"
+                    onClick={this.handleQr}
+                    style={{
+                      position: 'absolute',
+                      elevation: 0,
+                      cursor: 'pointer',
+                      marginTop: '10px',
+                      marginLeft: '360px',
+                      color: '#263238',
+                      cursorText: 'QR',
+                    }}
+                  />
+                </Tooltip>
               </Grid>
 
               {qrButton && (
-                <Grid item xs={3}>
+                <Grid item xs={1}>
                   <Zoom in={qrButton}>
                     <QRCode
                       value={this.state.shortUrl}
