@@ -115,7 +115,7 @@ class HomeScreen extends Component {
         body: JSON.stringify({
           longUrl: this.state.longUrl,
           keyword: this.state.keyword,
-          customurl: this.state.customurl,
+          customurl: this.state.customUrl,
         }),
       });
 
