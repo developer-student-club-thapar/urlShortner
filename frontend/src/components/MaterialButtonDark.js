@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
 function MaterialButtonDark(props) {
   return (
     <Container {...props}>
-      <Copy>COPY</Copy>
+      <FileCopyIcon />
     </Container>
   );
 }
@@ -14,12 +14,6 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  min-width: 88px;
-  padding-left: 16px;
-  padding-right: 16px;
-  background-color: #212121;
-  border: 1px;
-  box-shadow: 2px 2px 5px 0.35px #111111;
 `;
 
 const Copy = styled.span`

@@ -1,19 +1,48 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import MaterialHelperTextBox from '../components/MaterialHelperTextBox';
-import InputLabel from '@material-ui/core/InputLabel';
-// import Chip from '@material-ui/core/Chip';
-//import MaterialComboBox from '../components/MaterialComboBox';
+import React, { Component, Fragment } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
+import Grid from '@material-ui/core/Grid';
+import { Container } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import MaterialUnderlineTextbox from '../components/MaterialUnderlineTextbox';
 import MaterialButtonSuccess from '../components/MaterialButtonSuccess';
-import MaterialButtonDark from '../components/MaterialButtonDark';
-//import Snackbar from '@material-ui/core/Snackbar';http://localhost:5000/100bW9DvP
-import Alert from '@material-ui/lab/Alert';
+import Button from '@material-ui/core/Button';
+import MenuItem from '@material-ui/core/MenuItem';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
+import CropFreeIcon from '@material-ui/icons/CropFree';
+import Tooltip from '@material-ui/core/Tooltip';
+import Zoom from '@material-ui/core/Zoom';
+import Fade from '@material-ui/core/Fade';
+const illustration = require('../assets/images/illustration.png');
 var QRCode = require('qrcode.react');
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  illustration: {
+    marginLeft: theme.spacing(70),
+    objectFit: 'contain',
+    cursor: 'pointer',
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
+}));
+
+const keywords = [
+  {
+    value: '',
+    label: 'lorem ipsum',
+  },
+  {
+    value: 'dsctiet.tech',
+    label: 'dsctiet',
+  },
+];
 
 class HomeScreen extends Component {
   state = {
@@ -21,6 +50,7 @@ class HomeScreen extends Component {
     shortUrl: '',
     error: '',
     keyword: '',
+    customUrl: '',
   };
 
   handleKeyword = event => {
@@ -33,17 +63,50 @@ class HomeScreen extends Component {
     this.setState({
       longUrl: event.target.value,
       shortUrl: '',
+      customUrl: '',
+      submitButton: false,
+      copyButton: false,
+      cusUrlCheck: false,
+      qrButton: false,
     });
     // console.log(event.target.value);
   };
   handleCopy = event => {
-    event.preventDefault();
     this.setState({
-      button: true,
+      copyAlert: true,
     });
   };
+
+  handleQr = event => {
+    this.setState({
+      qrButton: true,
+    });
+  };
+
+  handleKeyword = event => {
+    this.setState({
+      keyword: event.target.value,
+    });
+  };
+
+  handleCustomurl = event => {
+    this.setState({
+      customUrl: event.target.value,
+      cusUrlCheck: true,
+    });
+  };
+
+  handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    this.setState({
+      error: '',
+      copyAlert: false,
+    });
+  };
+
   handleSubmit = async event => {
-    // console.log(this.state.longUrl);
     event.preventDefault();
 
     try {
@@ -55,19 +118,22 @@ class HomeScreen extends Component {
         body: JSON.stringify({
           longUrl: this.state.longUrl,
           keyword: this.state.keyword,
+          customurl: this.state.customUrl,
         }),
       });
 
       const responseData = await response.json();
-      if (typeof responseData == 'object') {
+
+      if (typeof responseData.error !== 'undefined') {
         this.setState({
-          shortUrl: responseData.shortUrl,
+          error: responseData.error,
+          submitButton: false,
         });
-        console.log(responseData.keyword);
-      } else {
-        console.log(responseData);
+      }
+      if (typeof responseData.link !== 'undefined') {
         this.setState({
-          error: responseData,
+          shortUrl: responseData.link,
+          submitButton: true,
         });
       }
     } catch (err) {
@@ -76,158 +142,251 @@ class HomeScreen extends Component {
   };
 
   render() {
-    const { button } = this.state;
+    const { qrButton } = this.state;
+    const { copyAlert } = this.state;
     const { error } = this.state;
+    const { submitButton } = this.state;
+    const { cusUrlCheck } = this.state;
     return (
-      <Container>
-        <Rect gradientImage="Gradient_BTNZaAY.png">
-          <form noValidate autoComplete="off">
-            <MaterialHelperTextBox
-              inputStyle="      https://"
-              style={{
-                height: 122,
-                width: 698,
-                position: 'absolute',
-                left: 301,
-                top: 0,
-              }}
-              stackedLabel="Enter the URL"
-              value={this.state.longUrl}
-              onChange={this.handleChange}
-            ></MaterialHelperTextBox>
-            <Rect6>
-              <InputLabel id="demo-customized-select-label">
-                Select Keyword
-              </InputLabel>
-              <Select
-                label="Select Keyword"
+      <Fragment>
+        <Container fixed>
+          <Grid
+            container
+            spacing={4}
+            style={{
+              marginTop: '130px',
+            }}
+          >
+            <Grid item xs={7}>
+              <h1>Lorem Ipsum</h1>
+
+              <em style={{ lineWrapping: 'true', fontWeight: '100' }}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+                faucibus erat lacinia magna gravida consequat. Suspendisse risus
+                turpis, egestas non sem ac, ultricies scelerisque est. Proin
+                imperdiet tincidunt rutrum. Nunc semper congue ligula dignissim
+                euismod.
+              </em>
+            </Grid>
+            <Grid item>
+              <img
+                src={illustration}
+                className={useStyles.illustration}
+                alt="illustration"
+                id="illustration"
+                onClick={() => {
+                  window.open('https://dsctiet.tech/');
+                }}
+              />
+            </Grid>
+          </Grid>
+        </Container>
+        <Container fixed>
+          <Grid container spacing={4} style={{ marginTop: '200px' }}>
+            <Grid item xs />
+            <Grid item xs={5}>
+              <TextField
+                label="Enter the URL"
+                style={{
+                  height: 62,
+                  width: '34%',
+                  position: 'absolute',
+                  background: 'rgba(230, 230, 230, 0.88)',
+                }}
+                variant="filled"
+                value={this.state.longUrl}
+                onChange={this.handleChange}
+              ></TextField>
+            </Grid>
+            <Grid item xs={3}>
+              <TextField
+                select
+                label="Domain"
+                style={{
+                  height: 62,
+                  position: 'absolute',
+                  width: '11%',
+                  background: 'rgba(230, 230, 230, 0.88)',
+                  disableUnderline: true,
+                }}
+                required
                 value={this.state.keyword}
                 onChange={this.handleKeyword}
+                variant="filled"
               >
-                <MenuItem value={'dsctiet'}>dsctiet</MenuItem>
-                <MenuItem value={'lorem ipsum'}>lorem ipsum</MenuItem>
-              </Select>
-            </Rect6>
-            <MaterialButtonSuccess
-              style={{
-                height: 61,
-                width: 178,
-                position: 'absolute',
-                left: 1269,
-                top: 61,
-                overflow: 'hidden',
-                cursor: 'pointer',
-              }}
-              onClick={this.handleSubmit}
-            ></MaterialButtonSuccess>
-          </form>
+                {keywords.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}{' '}
+              </TextField>
+            </Grid>
+            <Grid item xs={3}>
+              <MaterialButtonSuccess
+                style={{
+                  height: 62,
+                  width: '10%',
+                  position: 'absolute',
+                  overflow: 'hidden',
+                  cursor: 'pointer',
+                  background: 'rgba(1, 87, 155, 100)',
+                }}
+                onClick={this.handleSubmit}
+              ></MaterialButtonSuccess>
+            </Grid>
+            <Grid item xs />
+          </Grid>
+          <Grid container spacing={3} style={{ marginTop: '60px' }}>
+            <Grid item xs />
+            <Grid item xs={7}>
+              <span style={{ fontWeight: '100' }}>
+                <Button
+                  onClick={this.handleCustomurl}
+                  style={{
+                    color: 'inherit',
+                  }}
+                >
+                  Custom Url ?
+                </Button>
+              </span>
+              {cusUrlCheck && (
+                <Fade in={cusUrlCheck}>
+                  <TextField
+                    label="Custom URL"
+                    value={this.state.customUrl}
+                    onChange={this.handleCustomurl}
+                    style={{
+                      position: 'absolute',
+                      width: '15%',
+                      marginLeft: '60px',
+                      background: 'rgba(230, 230, 230, 0.88)',
+                      disableUnderline: true,
+                    }}
+                    variant="filled"
+                  ></TextField>
+                </Fade>
+              )}
+            </Grid>
+
+            <Grid item xs />
+          </Grid>
           {error && (
-            <Rect5>
-              <Alert severity="warning" variant="filled">
+            <Snackbar
+              open={error}
+              TransitionComponent={Zoom}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+              autoHideDuration={6000}
+              onClose={this.handleClose}
+            >
+              <Alert
+                onClose={this.handleClose}
+                severity="warning"
+                variant="filled"
+              >
                 {this.state.error}
               </Alert>
-            </Rect5>
+            </Snackbar>
           )}
-          <MaterialUnderlineTextbox
-            style={{
-              height: 59,
-              width: 698,
-              position: 'absolute',
-              left: 492,
-              top: 186,
-              borderWidth: 1,
-              borderColor: 'rgba(255,255,255,1)',
-              borderStyle: 'solid',
-            }}
-            inputStyle="Short url"
-            value={this.state.shortUrl}
-          ></MaterialUnderlineTextbox>
-          <CopyToClipboard text={this.state.shortUrl}>
-            <MaterialButtonDark
-              onClick={this.handleCopy}
-              style={{
-                height: 58,
-                width: 107,
-                position: 'absolute',
-                left: 1229,
-                top: 186,
-                borderWidth: 1,
-                elevation: 0,
-                cursor: 'pointer',
-              }}
-            ></MaterialButtonDark>
-          </CopyToClipboard>
-          {button && (
-            <QRCode
-              value={this.state.shortUrl}
-              style={{
-                position: 'absolute',
-                left: 1500,
-                top: 91,
-              }}
-            />
+          {submitButton && (
+            <Fade in={submitButton}>
+              <Grid
+                container
+                spacing={3}
+                alignItems="center"
+                style={{ marginTop: '60px' }}
+              >
+                <Grid item xs />
+                <Grid item xs={4}>
+                  <MaterialUnderlineTextbox
+                    style={{
+                      height: 49,
+                      width: 398,
+                      position: 'absolute',
+                      borderWidth: 1,
+                      borderColor: 'rgba(255,255,255,1)',
+                      borderStyle: 'solid',
+                    }}
+                    inputStyle="Short url"
+                    value={this.state.shortUrl}
+                  />
+                  <CopyToClipboard text={this.state.shortUrl}>
+                    <Tooltip title="Copy" TransitionProps={{ timeout: 600 }}>
+                      <FileCopyOutlinedIcon
+                        fontSize="medium"
+                        onClick={this.handleCopy}
+                        style={{
+                          position: 'absolute',
+                          elevation: 0,
+                          cursor: 'pointer',
+                          marginTop: '10px',
+                          marginLeft: '320px',
+                          color: '#263238',
+                          cursorText: 'copy',
+                        }}
+                      />
+                    </Tooltip>
+                  </CopyToClipboard>
+                  {copyAlert && (
+                    <Snackbar
+                      open={copyAlert}
+                      TransitionComponent={Zoom}
+                      anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'center',
+                      }}
+                      autoHideDuration={6000}
+                      onClose={this.handleClose}
+                    >
+                      <Alert
+                        variant="filled"
+                        severity="info"
+                        onClose={this.handleClose}
+                      >
+                        Copied to Clipboard !
+                      </Alert>
+                    </Snackbar>
+                  )}
+                  <Tooltip title="Get QR" TransitionProps={{ timeout: 600 }}>
+                    <CropFreeIcon
+                      fontSize="medium"
+                      onClick={this.handleQr}
+                      style={{
+                        position: 'absolute',
+                        elevation: 0,
+                        cursor: 'pointer',
+                        marginTop: '10px',
+                        marginLeft: '360px',
+                        color: '#263238',
+                        cursorText: 'QR',
+                      }}
+                    />
+                  </Tooltip>
+                </Grid>
+
+                {qrButton && (
+                  <Grid item xs={1}>
+                    <Zoom in={qrButton}>
+                      <QRCode
+                        value={this.state.shortUrl}
+                        style={{
+                          position: 'absolute',
+                        }}
+                      />
+                    </Zoom>
+                  </Grid>
+                )}
+                <Grid item xs />
+              </Grid>
+            </Fade>
           )}
-          {button && (
-            <Rect5>
-              <Alert variant="filled" severity="info">
-                Copied to Clipboard !
-              </Alert>
-            </Rect5>
-          )}
-          ,
-        </Rect>
-      </Container>
+          <Grid container style={{ marginTop: '250px' }} />
+        </Container>
+      </Fragment>
     );
   }
 }
-
-const Container = styled.div`
-  display: flex;
-  background: transparent;
-  flex-direction: column;
-  height: 100vh;
-  width: 100vw;
-`;
-/*const Image = styled.div`
-  top: 0px;
-  left: 0px;
-  width: 1940px;
-  height: 1080px;
-  position: absolute;
-  flex-direction: column;
-  display: flex;
-  background-image: url(${require('../assets/images/background.png')});
-  background-size: cover;
-  overflow: hidden;
-`;*/
-
-const Rect = styled.div`
-  width: 1974;
-  height: 346px;
-  position: absolute;
-  overflow: hidden;
-  flex-direction: column;
-  background-color: rgba(26, 35, 126, 0.81);
-  margin-top: 132px;
-  position: relative;
-  display: flex;
-  box-shadow: 5px 5px 10px 0.14px rgba(0, 0, 0, 1);
-`;
-
-const Rect5 = styled.div`
-  top: 271px;
-  left: 1171px;
-  width: 295px;
-  height: 44px;
-  position: absolute;
-  background-color: rgba(15, 15, 15, 0.45);
-`;
-const Rect6 = styled.div`
-  top: 51px;
-  left: 1067px;
-  width: 181px;
-  height: 61px;
-  position: absolute;
-`;
 
 export default HomeScreen;

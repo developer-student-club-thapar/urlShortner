@@ -15,10 +15,13 @@
   "homepage": "https://urlshort.dsctiet.tech",
   "dependencies": {
     "@material-ui/core": "^4.9.14",
+    "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.55",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "material-ui-icons": "^1.0.0-beta.36",
+    "mdbreact": "^4.27.0",
     "nodemon": "^2.0.4",
     "prop-types": "^15.7.2",
     "qrcode.react": "^1.0.0",
@@ -29,6 +32,7 @@
     "react-router-dom": "^5.2.0",
     "react-script-tag": "^1.1.2",
     "react-scripts": "^3.4.1",
+    "react-transition-group": "^4.4.1",
     "semantic-ui-react": "^0.88.2",
     "styled-components": "^5.1.1"
   },

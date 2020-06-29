@@ -6,3 +6,5 @@ node_modules
 
 #This will remove npm-debug files
 .log 
+
+.env
