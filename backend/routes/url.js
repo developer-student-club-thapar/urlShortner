@@ -8,13 +8,12 @@ const HttpError = require('../models/http-error');
 const fetch = require('node-fetch');
 require('dotenv').config();
 
-
 // route to shorten the link
 router.post('/shorten', async (req, res) => {
   const { longUrl } = req.body;
   const { keyword } = req.body;
   const { customurl } = req.body;
-  
+
   const apifetch = process.env.link;
   if (customurl === '') {
     const fetch_response_all = await fetch(apifetch, {
