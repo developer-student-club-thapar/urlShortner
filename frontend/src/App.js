@@ -3,6 +3,7 @@ import './App.css';
 import HomeScreen from './screens/Home';
 import NavBar from './components/navBar';
 import Footer from './components/Footer';
+
 const App = () => {
   return (
     <div className="App">

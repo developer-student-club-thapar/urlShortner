@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
@@ -26,6 +26,10 @@ const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(70),
     objectFit: 'contain',
     cursor: 'pointer',
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
   },
 }));
 
@@ -144,239 +148,243 @@ class HomeScreen extends Component {
     const { submitButton } = this.state;
     const { cusUrlCheck } = this.state;
     return (
-      <Container fixed>
-        <Grid
-          container
-          spacing={4}
-          style={{
-            marginTop: '130px',
-          }}
-        >
-          <Grid item xs={7}>
-            <h1>Lorem Ipsum</h1>
-            <em style={{ lineWrapping: 'true', fontWeight: '100' }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-              faucibus erat lacinia magna gravida consequat. Suspendisse risus
-              turpis, egestas non sem ac, ultricies scelerisque est. Proin
-              imperdiet tincidunt rutrum. Nunc semper congue ligula dignissim
-              euismod.
-            </em>
-          </Grid>
-          <Grid item>
-            <img
-              src={illustration}
-              className={useStyles.illustration}
-              alt="illustration"
-              id="illustration"
-              onClick={() => {
-                window.open('https://dsctiet.tech/');
-              }}
-            />
-          </Grid>
-        </Grid>
-
-        <Grid container spacing={4} style={{ marginTop: '200px' }}>
-          <Grid item xs />
-          <Grid item xs={5}>
-            <TextField
-              label="Enter the URL"
-              style={{
-                height: 62,
-                width: '34%',
-                position: 'absolute',
-                background: 'rgba(230, 230, 230, 0.88)',
-              }}
-              variant="filled"
-              value={this.state.longUrl}
-              onChange={this.handleChange}
-            ></TextField>
-          </Grid>
-          <Grid item xs={3}>
-            <TextField
-              select
-              label="Domain"
-              style={{
-                height: 62,
-                position: 'absolute',
-                width: '11%',
-                background: 'rgba(230, 230, 230, 0.88)',
-                disableUnderline: true,
-              }}
-              required
-              value={this.state.keyword}
-              onChange={this.handleKeyword}
-              variant="filled"
-            >
-              {keywords.map(option => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}{' '}
-            </TextField>
-          </Grid>
-          <Grid item xs={3}>
-            <MaterialButtonSuccess
-              style={{
-                height: 62,
-                width: '10%',
-                position: 'absolute',
-                overflow: 'hidden',
-                cursor: 'pointer',
-                background: 'rgba(1, 87, 155, 100)',
-              }}
-              onClick={this.handleSubmit}
-            ></MaterialButtonSuccess>
-          </Grid>
-          <Grid item xs />
-        </Grid>
-        <Grid container spacing={3} style={{ marginTop: '60px' }}>
-          <Grid item xs />
-          <Grid item xs={7}>
-            <span style={{ fontWeight: '100' }}>
-              <Button
-                onClick={this.handleCustomurl}
-                style={{
-                  color: 'inherit',
-                }}
-              >
-                Custom Url ?
-              </Button>
-            </span>
-            {cusUrlCheck && (
-              <Fade in={cusUrlCheck}>
-                <TextField
-                  label="Custom URL"
-                  value={this.state.customUrl}
-                  onChange={this.handleCustomurl}
-                  style={{
-                    position: 'absolute',
-                    width: '15%',
-                    marginLeft: '60px',
-                    background: 'rgba(230, 230, 230, 0.88)',
-                    disableUnderline: true,
-                  }}
-                  variant="filled"
-                ></TextField>
-              </Fade>
-            )}
-          </Grid>
-
-          <Grid item xs />
-        </Grid>
-        {error && (
-          <Snackbar
-            open={error}
-            TransitionComponent={Zoom}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'center',
+      <Fragment>
+        <Container fixed>
+          <Grid
+            container
+            spacing={4}
+            style={{
+              marginTop: '130px',
             }}
-            autoHideDuration={6000}
-            onClose={this.handleClose}
           >
-            <Alert
-              onClose={this.handleClose}
-              severity="warning"
-              variant="filled"
-            >
-              {this.state.error}
-            </Alert>
-          </Snackbar>
-        )}
-        {submitButton && (
-          <Fade in={submitButton}>
-            <Grid
-              container
-              spacing={3}
-              alignItems="center"
-              style={{ marginTop: '60px' }}
-            >
-              <Grid item xs />
-              <Grid item xs={4}>
-                <MaterialUnderlineTextbox
+            <Grid item xs={7}>
+              <h1>Lorem Ipsum</h1>
+
+              <em style={{ lineWrapping: 'true', fontWeight: '100' }}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+                faucibus erat lacinia magna gravida consequat. Suspendisse risus
+                turpis, egestas non sem ac, ultricies scelerisque est. Proin
+                imperdiet tincidunt rutrum. Nunc semper congue ligula dignissim
+                euismod.
+              </em>
+            </Grid>
+            <Grid item>
+              <img
+                src={illustration}
+                className={useStyles.illustration}
+                alt="illustration"
+                id="illustration"
+                onClick={() => {
+                  window.open('https://dsctiet.tech/');
+                }}
+              />
+            </Grid>
+          </Grid>
+        </Container>
+        <Container fixed>
+          <Grid container spacing={4} style={{ marginTop: '200px' }}>
+            <Grid item xs />
+            <Grid item xs={5}>
+              <TextField
+                label="Enter the URL"
+                style={{
+                  height: 62,
+                  width: '34%',
+                  position: 'absolute',
+                  background: 'rgba(230, 230, 230, 0.88)',
+                }}
+                variant="filled"
+                value={this.state.longUrl}
+                onChange={this.handleChange}
+              ></TextField>
+            </Grid>
+            <Grid item xs={3}>
+              <TextField
+                select
+                label="Domain"
+                style={{
+                  height: 62,
+                  position: 'absolute',
+                  width: '11%',
+                  background: 'rgba(230, 230, 230, 0.88)',
+                  disableUnderline: true,
+                }}
+                required
+                value={this.state.keyword}
+                onChange={this.handleKeyword}
+                variant="filled"
+              >
+                {keywords.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}{' '}
+              </TextField>
+            </Grid>
+            <Grid item xs={3}>
+              <MaterialButtonSuccess
+                style={{
+                  height: 62,
+                  width: '10%',
+                  position: 'absolute',
+                  overflow: 'hidden',
+                  cursor: 'pointer',
+                  background: 'rgba(1, 87, 155, 100)',
+                }}
+                onClick={this.handleSubmit}
+              ></MaterialButtonSuccess>
+            </Grid>
+            <Grid item xs />
+          </Grid>
+          <Grid container spacing={3} style={{ marginTop: '60px' }}>
+            <Grid item xs />
+            <Grid item xs={7}>
+              <span style={{ fontWeight: '100' }}>
+                <Button
+                  onClick={this.handleCustomurl}
                   style={{
-                    height: 49,
-                    width: 398,
-                    position: 'absolute',
-                    borderWidth: 1,
-                    borderColor: 'rgba(255,255,255,1)',
-                    borderStyle: 'solid',
+                    color: 'inherit',
                   }}
-                  inputStyle="Short url"
-                  value={this.state.shortUrl}
-                />
-                <CopyToClipboard text={this.state.shortUrl}>
-                  <Tooltip title="Copy" TransitionProps={{ timeout: 600 }}>
-                    <FileCopyOutlinedIcon
+                >
+                  Custom Url ?
+                </Button>
+              </span>
+              {cusUrlCheck && (
+                <Fade in={cusUrlCheck}>
+                  <TextField
+                    label="Custom URL"
+                    value={this.state.customUrl}
+                    onChange={this.handleCustomurl}
+                    style={{
+                      position: 'absolute',
+                      width: '15%',
+                      marginLeft: '60px',
+                      background: 'rgba(230, 230, 230, 0.88)',
+                      disableUnderline: true,
+                    }}
+                    variant="filled"
+                  ></TextField>
+                </Fade>
+              )}
+            </Grid>
+
+            <Grid item xs />
+          </Grid>
+          {error && (
+            <Snackbar
+              open={error}
+              TransitionComponent={Zoom}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+              autoHideDuration={6000}
+              onClose={this.handleClose}
+            >
+              <Alert
+                onClose={this.handleClose}
+                severity="warning"
+                variant="filled"
+              >
+                {this.state.error}
+              </Alert>
+            </Snackbar>
+          )}
+          {submitButton && (
+            <Fade in={submitButton}>
+              <Grid
+                container
+                spacing={3}
+                alignItems="center"
+                style={{ marginTop: '60px' }}
+              >
+                <Grid item xs />
+                <Grid item xs={4}>
+                  <MaterialUnderlineTextbox
+                    style={{
+                      height: 49,
+                      width: 398,
+                      position: 'absolute',
+                      borderWidth: 1,
+                      borderColor: 'rgba(255,255,255,1)',
+                      borderStyle: 'solid',
+                    }}
+                    inputStyle="Short url"
+                    value={this.state.shortUrl}
+                  />
+                  <CopyToClipboard text={this.state.shortUrl}>
+                    <Tooltip title="Copy" TransitionProps={{ timeout: 600 }}>
+                      <FileCopyOutlinedIcon
+                        fontSize="medium"
+                        onClick={this.handleCopy}
+                        style={{
+                          position: 'absolute',
+                          elevation: 0,
+                          cursor: 'pointer',
+                          marginTop: '10px',
+                          marginLeft: '320px',
+                          color: '#263238',
+                          cursorText: 'copy',
+                        }}
+                      />
+                    </Tooltip>
+                  </CopyToClipboard>
+                  {copyAlert && (
+                    <Snackbar
+                      open={copyAlert}
+                      TransitionComponent={Zoom}
+                      anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'center',
+                      }}
+                      autoHideDuration={6000}
+                      onClose={this.handleClose}
+                    >
+                      <Alert
+                        variant="filled"
+                        severity="info"
+                        onClose={this.handleClose}
+                      >
+                        Copied to Clipboard !
+                      </Alert>
+                    </Snackbar>
+                  )}
+                  <Tooltip title="Get QR" TransitionProps={{ timeout: 600 }}>
+                    <CropFreeIcon
                       fontSize="medium"
-                      onClick={this.handleCopy}
+                      onClick={this.handleQr}
                       style={{
                         position: 'absolute',
                         elevation: 0,
                         cursor: 'pointer',
                         marginTop: '10px',
-                        marginLeft: '320px',
+                        marginLeft: '360px',
                         color: '#263238',
-                        cursorText: 'copy',
+                        cursorText: 'QR',
                       }}
                     />
                   </Tooltip>
-                </CopyToClipboard>
-                {copyAlert && (
-                  <Snackbar
-                    open={copyAlert}
-                    TransitionComponent={Zoom}
-                    anchorOrigin={{
-                      vertical: 'bottom',
-                      horizontal: 'center',
-                    }}
-                    autoHideDuration={6000}
-                    onClose={this.handleClose}
-                  >
-                    <Alert
-                      variant="filled"
-                      severity="info"
-                      onClose={this.handleClose}
-                    >
-                      Copied to Clipboard !
-                    </Alert>
-                  </Snackbar>
-                )}
-                <Tooltip title="Get QR" TransitionProps={{ timeout: 600 }}>
-                  <CropFreeIcon
-                    fontSize="medium"
-                    onClick={this.handleQr}
-                    style={{
-                      position: 'absolute',
-                      elevation: 0,
-                      cursor: 'pointer',
-                      marginTop: '10px',
-                      marginLeft: '360px',
-                      color: '#263238',
-                      cursorText: 'QR',
-                    }}
-                  />
-                </Tooltip>
-              </Grid>
-
-              {qrButton && (
-                <Grid item xs={1}>
-                  <Zoom in={qrButton}>
-                    <QRCode
-                      value={this.state.shortUrl}
-                      style={{
-                        position: 'absolute',
-                      }}
-                    />
-                  </Zoom>
                 </Grid>
-              )}
-              <Grid item xs />
-            </Grid>
-          </Fade>
-        )}
-        <Grid container style={{ marginTop: '250px' }} />
-      </Container>
+
+                {qrButton && (
+                  <Grid item xs={1}>
+                    <Zoom in={qrButton}>
+                      <QRCode
+                        value={this.state.shortUrl}
+                        style={{
+                          position: 'absolute',
+                        }}
+                      />
+                    </Zoom>
+                  </Grid>
+                )}
+                <Grid item xs />
+              </Grid>
+            </Fade>
+          )}
+          <Grid container style={{ marginTop: '250px' }} />
+        </Container>
+      </Fragment>
     );
   }
 }
