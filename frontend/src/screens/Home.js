@@ -18,7 +18,7 @@ import Zoom from '@material-ui/core/Zoom';
 import Fade from '@material-ui/core/Fade';
 const illustration = require('../assets/images/illustration.png');
 var QRCode = require('qrcode.react');
-
+var validUrl = require('valid-url');
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -111,7 +111,6 @@ class HomeScreen extends Component {
 
   handleSubmit = async event => {
 
-
     event.preventDefault();
     const api_fetch = process.env.REACT_APP_API_KEY;
 
@@ -125,6 +124,12 @@ class HomeScreen extends Component {
           error: "Empty url passed. Provide a valid url!",
           submitButton: false,
         });
+    }
+    else if(!validUrl.isUri(target)){
+      this.setState({
+        error: "This is not a valid url!",
+        submitButton: false,
+      });
     }
     else{
     if(this.state.customUrl === ''){
@@ -144,7 +149,6 @@ class HomeScreen extends Component {
                 target,
                 domain: 'dsctiet.xyz',
             }).then(res =>{
-              console.log(res);
                      this.setState({
                       shortUrl:res.data.link ,
                       submitButton: true,
@@ -153,7 +157,7 @@ class HomeScreen extends Component {
             }
             else{
               this.setState({
-                shortUrl: link ,
+                shortUrl: link,
                 submitButton: true,
                 });
             }
