@@ -44,7 +44,6 @@ const keywords = [
     value: 'other',
     label: 'Other',
   },
-  
 ];
 
 class HomeScreen extends Component {
@@ -110,7 +109,6 @@ class HomeScreen extends Component {
   };
 
   handleSubmit = async event => {
-
     event.preventDefault();
     const api_fetch = process.env.REACT_APP_API_KEY;
 
@@ -118,82 +116,81 @@ class HomeScreen extends Component {
     var target = this.state.longUrl;
     var customurl = this.state.customUrl;
 
-    
-    if (target === ''){
-        this.setState({
-          error: "Empty url passed. Provide a valid url!",
-          submitButton: false,
-        });
-    }
-    else if(!validUrl.isUri(target)){
+    if (target === '') {
       this.setState({
-        error: "This is not a valid url!",
+        error: 'Empty url passed. Provide a valid url!',
         submitButton: false,
       });
-    }
-    else{
-    if(this.state.customUrl === ''){
-      axios.get(api_fetch).then(res =>{
-        data = res.data.data;
-        
-        var link = '';
-        for (var i = 0; i < data.length; i++) {
-              if (data[i].target === this.state.longUrl) {
-                link = data[i].link;
-                break;
-              }
+    } else if (!validUrl.isUri(target)) {
+      this.setState({
+        error: 'This is not a valid url!',
+        submitButton: false,
+      });
+    } else {
+      if (this.state.customUrl === '') {
+        axios.get(api_fetch).then(res => {
+          data = res.data.data;
+
+          var link = '';
+          for (var i = 0; i < data.length; i++) {
+            if (data[i].target === this.state.longUrl) {
+              link = data[i].link;
+              break;
             }
-            
-            if (link === ''){
-              axios.post(api_fetch,{
+          }
+
+          if (link === '') {
+            axios
+              .post(api_fetch, {
                 target,
                 domain: 'dsctiet.xyz',
-            }).then(res =>{
-                     this.setState({
-                      shortUrl:res.data.link ,
-                      submitButton: true,
-                      });
-              });
-            }
-            else{
-              this.setState({
-                shortUrl: link,
-                submitButton: true,
-                });
-            }
-      });
-      
-    } else{
-      axios.get(api_fetch).then(res =>{
-        data = res.data.data;
-        
-        var flag = 1;
-        for (var i = 0; i < data.length; i++) {
-              if(data[i].address === this.state.customUrl){
+              })
+              .then(res => {
                 this.setState({
-                  error: "Custom url already in use!",
-                  submitButton: false,
+                  shortUrl: res.data.link,
+                  submitButton: true,
                 });
-                flag=0;
-                break;
-              }
-            }
-          if(flag ===1){
-      axios.post(api_fetch,{
-        target,
-        domain: 'dsctiet.xyz',
-        customurl,
-    }).then(res =>{
-      console.log(res);
-             this.setState({
-              shortUrl:res.data.link ,
-              submitButton: true,
               });
-      });
+          } else {
+            this.setState({
+              shortUrl: link,
+              submitButton: true,
+            });
+          }
+        });
+      } else {
+        axios.get(api_fetch).then(res => {
+          data = res.data.data;
+
+          var flag = 1;
+          for (var i = 0; i < data.length; i++) {
+            if (data[i].address === this.state.customUrl) {
+              this.setState({
+                error: 'Custom url already in use!',
+                submitButton: false,
+              });
+              flag = 0;
+              break;
+            }
+          }
+          if (flag === 1) {
+            axios
+              .post(api_fetch, {
+                target,
+                domain: 'dsctiet.xyz',
+                customurl,
+              })
+              .then(res => {
+                console.log(res);
+                this.setState({
+                  shortUrl: res.data.link,
+                  submitButton: true,
+                });
+              });
+          }
+        });
+      }
     }
-    });
-  }
-}
   };
 
   render() {
