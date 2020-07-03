@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
@@ -18,6 +19,7 @@ import Fade from '@material-ui/core/Fade';
 const illustration = require('../assets/images/illustration.png');
 var QRCode = require('qrcode.react');
 
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -35,13 +37,14 @@ const useStyles = makeStyles(theme => ({
 
 const keywords = [
   {
-    value: '',
-    label: 'lorem ipsum',
-  },
-  {
     value: 'dsctiet.tech',
     label: 'dsctiet',
   },
+  {
+    value: 'other',
+    label: 'Other',
+  },
+  
 ];
 
 class HomeScreen extends Component {
@@ -107,38 +110,85 @@ class HomeScreen extends Component {
   };
 
   handleSubmit = async event => {
+
+
     event.preventDefault();
+    var data;
+    var target = this.state.longUrl;
+    var customurl = this.state.customUrl;
 
-    try {
-      const response = await fetch('http://localhost:5000/api/url/shorten', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          longUrl: this.state.longUrl,
-          keyword: this.state.keyword,
-          customurl: this.state.customUrl,
-        }),
-      });
-
-      const responseData = await response.json();
-
-      if (typeof responseData.error !== 'undefined') {
+    
+    if (target === ''){
         this.setState({
-          error: responseData.error,
+          error: "Empty url passed. Provide a valid url!",
           submitButton: false,
         });
-      }
-      if (typeof responseData.link !== 'undefined') {
-        this.setState({
-          shortUrl: responseData.link,
-          submitButton: true,
-        });
-      }
-    } catch (err) {
-      console.log(err);
     }
+    else{
+    if(this.state.customUrl === ''){
+      axios.get('/api/v2/links?apikey=G4hG_oS6nOCTjifjUKX~RYAOJXEivsMlkOp9BwnX').then(res =>{
+        data = res.data.data;
+        
+        var link = '';
+        for (var i = 0; i < data.length; i++) {
+              if (data[i].target === this.state.longUrl) {
+                link = data[i].link;
+                break;
+              }
+            }
+            
+            if (link === ''){
+                axios.post('/api/v2/links?apikey=G4hG_oS6nOCTjifjUKX~RYAOJXEivsMlkOp9BwnX',{
+                    target,
+                    domain: 'dsctiet.xyz',
+                }).then(res =>{
+                    // console.log(res.error);
+                  console.log(res.data.link);
+                         this.setState({
+                          shortUrl:res.data.link ,
+                          submitButton: true,
+                          });
+              });
+            }
+            else{
+              this.setState({
+                shortUrl: link ,
+                submitButton: true,
+                });
+            }
+      });
+      
+    } else{
+      axios.get('/api/v2/links?apikey=G4hG_oS6nOCTjifjUKX~RYAOJXEivsMlkOp9BwnX').then(res =>{
+        data = res.data.data;
+        
+        var flag = 1;
+        for (var i = 0; i < data.length; i++) {
+              if(data[i].address === this.state.customUrl){
+                this.setState({
+                  error: "Custom url already in use!",
+                  submitButton: false,
+                });
+                flag=0;
+                break;
+              }
+            }
+          if(flag ===1){
+      axios.post('/api/v2/links?apikey=G4hG_oS6nOCTjifjUKX~RYAOJXEivsMlkOp9BwnX',{
+        target,
+        domain: 'dsctiet.xyz',
+        customurl,
+    }).then(res =>{
+      console.log(res);
+             this.setState({
+              shortUrl:res.data.link ,
+              submitButton: true,
+              });
+      });
+    }
+    });
+  }
+}
   };
 
   render() {
