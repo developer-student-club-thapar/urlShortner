@@ -113,6 +113,8 @@ class HomeScreen extends Component {
 
 
     event.preventDefault();
+    const api_fetch = process.env.REACT_APP_API_KEY;
+
     var data;
     var target = this.state.longUrl;
     var customurl = this.state.customUrl;
@@ -126,7 +128,7 @@ class HomeScreen extends Component {
     }
     else{
     if(this.state.customUrl === ''){
-      axios.get('/api/v2/links?apikey=G4hG_oS6nOCTjifjUKX~RYAOJXEivsMlkOp9BwnX').then(res =>{
+      axios.get(api_fetch).then(res =>{
         data = res.data.data;
         
         var link = '';
@@ -138,16 +140,15 @@ class HomeScreen extends Component {
             }
             
             if (link === ''){
-                axios.post('/api/v2/links?apikey=G4hG_oS6nOCTjifjUKX~RYAOJXEivsMlkOp9BwnX',{
-                    target,
-                    domain: 'dsctiet.xyz',
-                }).then(res =>{
-                    // console.log(res.error);
-                  console.log(res.data.link);
-                         this.setState({
-                          shortUrl:res.data.link ,
-                          submitButton: true,
-                          });
+              axios.post(api_fetch,{
+                target,
+                domain: 'dsctiet.xyz',
+            }).then(res =>{
+              console.log(res);
+                     this.setState({
+                      shortUrl:res.data.link ,
+                      submitButton: true,
+                      });
               });
             }
             else{
@@ -159,7 +160,7 @@ class HomeScreen extends Component {
       });
       
     } else{
-      axios.get('/api/v2/links?apikey=G4hG_oS6nOCTjifjUKX~RYAOJXEivsMlkOp9BwnX').then(res =>{
+      axios.get(api_fetch).then(res =>{
         data = res.data.data;
         
         var flag = 1;
@@ -174,7 +175,7 @@ class HomeScreen extends Component {
               }
             }
           if(flag ===1){
-      axios.post('/api/v2/links?apikey=G4hG_oS6nOCTjifjUKX~RYAOJXEivsMlkOp9BwnX',{
+      axios.post(api_fetch,{
         target,
         domain: 'dsctiet.xyz',
         customurl,
