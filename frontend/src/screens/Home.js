@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
@@ -17,6 +18,7 @@ import Zoom from '@material-ui/core/Zoom';
 import Fade from '@material-ui/core/Fade';
 const illustration = require('../assets/images/illustration.png');
 var QRCode = require('qrcode.react');
+var validUrl = require('valid-url');
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -35,12 +37,12 @@ const useStyles = makeStyles(theme => ({
 
 const keywords = [
   {
-    value: '',
-    label: 'lorem ipsum',
-  },
-  {
     value: 'dsctiet.tech',
     label: 'dsctiet',
+  },
+  {
+    value: 'other',
+    label: 'Other',
   },
 ];
 
@@ -108,36 +110,86 @@ class HomeScreen extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
+    const api_fetch = process.env.REACT_APP_API_KEY;
 
-    try {
-      const response = await fetch('http://localhost:5000/api/url/shorten', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          longUrl: this.state.longUrl,
-          keyword: this.state.keyword,
-          customurl: this.state.customUrl,
-        }),
+    var data;
+    var target = this.state.longUrl;
+    var customurl = this.state.customUrl;
+
+    if (target === '') {
+      this.setState({
+        error: 'Empty url passed. Provide a valid url!',
+        submitButton: false,
       });
+    } else if (!validUrl.isUri(target)) {
+      this.setState({
+        error: 'This is not a valid url!',
+        submitButton: false,
+      });
+    } else {
+      if (this.state.customUrl === '') {
+        axios.get(api_fetch).then(res => {
+          data = res.data.data;
 
-      const responseData = await response.json();
+          var link = '';
+          for (var i = 0; i < data.length; i++) {
+            if (data[i].target === this.state.longUrl) {
+              link = data[i].link;
+              break;
+            }
+          }
 
-      if (typeof responseData.error !== 'undefined') {
-        this.setState({
-          error: responseData.error,
-          submitButton: false,
+          if (link === '') {
+            axios
+              .post(api_fetch, {
+                target,
+                domain: 'dsctiet.xyz',
+              })
+              .then(res => {
+                this.setState({
+                  shortUrl: res.data.link,
+                  submitButton: true,
+                });
+              });
+          } else {
+            this.setState({
+              shortUrl: link,
+              submitButton: true,
+            });
+          }
+        });
+      } else {
+        axios.get(api_fetch).then(res => {
+          data = res.data.data;
+
+          var flag = 1;
+          for (var i = 0; i < data.length; i++) {
+            if (data[i].address === this.state.customUrl) {
+              this.setState({
+                error: 'Custom url already in use!',
+                submitButton: false,
+              });
+              flag = 0;
+              break;
+            }
+          }
+          if (flag === 1) {
+            axios
+              .post(api_fetch, {
+                target,
+                domain: 'dsctiet.xyz',
+                customurl,
+              })
+              .then(res => {
+                console.log(res);
+                this.setState({
+                  shortUrl: res.data.link,
+                  submitButton: true,
+                });
+              });
+          }
         });
       }
-      if (typeof responseData.link !== 'undefined') {
-        this.setState({
-          shortUrl: responseData.link,
-          submitButton: true,
-        });
-      }
-    } catch (err) {
-      console.log(err);
     }
   };
 
