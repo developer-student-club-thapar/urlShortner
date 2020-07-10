@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
-import { makeStyles } from '@material-ui/core/styles';
+//import { makeStyles } from '@material-ui/core/styles';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import Grid from '@material-ui/core/Grid';
@@ -16,11 +16,11 @@ import CropFreeIcon from '@material-ui/icons/CropFree';
 import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
 import Fade from '@material-ui/core/Fade';
-const illustration = require('../assets/images/illustration.png');
+//const illustration = require('../assets/images/illustration.png');
 var QRCode = require('qrcode.react');
 var validUrl = require('valid-url');
 
-const useStyles = makeStyles(theme => ({
+/*const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
   },
-}));
+}));*/
 
 const keywords = [
   {
@@ -53,6 +53,7 @@ class HomeScreen extends Component {
     error: '',
     keyword: '',
     customUrl: '',
+
   };
 
   handleKeyword = event => {
@@ -67,19 +68,19 @@ class HomeScreen extends Component {
       shortUrl: '',
       customUrl: '',
       submitButton: false,
-      copyButton: false,
       cusUrlCheck: false,
       qrButton: false,
+      copied: false,
     });
     // console.log(event.target.value);
   };
-  handleCopy = event => {
-    this.setState({
-      copyAlert: true,
-    });
-  };
 
-  handleQr = event => {
+handleCopy = () => {
+  this.setState({
+    copied: true,
+  });
+};
+  handleQr = () => {
     this.setState({
       qrButton: true,
     });
@@ -98,13 +99,13 @@ class HomeScreen extends Component {
     });
   };
 
-  handleClose = (event, reason) => {
+  handleClose = (reason) => {
     if (reason === 'clickaway') {
       return;
     }
     this.setState({
       error: '',
-      copyAlert: false,
+      copied:false,
     });
   };
 
@@ -118,12 +119,12 @@ class HomeScreen extends Component {
 
     if (target === '') {
       this.setState({
-        error: 'Empty url passed. Provide a valid url!',
+        error: "URL can't be empty",
         submitButton: false,
       });
     } else if (!validUrl.isUri(target)) {
       this.setState({
-        error: 'This is not a valid url!',
+        error: 'Invalid URL!',
         submitButton: false,
       });
     } else {
@@ -166,7 +167,7 @@ class HomeScreen extends Component {
           for (var i = 0; i < data.length; i++) {
             if (data[i].address === this.state.customUrl) {
               this.setState({
-                error: 'Custom url already in use!',
+                error: 'URL already in use!',
                 submitButton: false,
               });
               flag = 0;
@@ -195,8 +196,8 @@ class HomeScreen extends Component {
 
   render() {
     const { qrButton } = this.state;
-    const { copyAlert } = this.state;
     const { error } = this.state;
+    const { copied } = this.state;
     const { submitButton } = this.state;
     const { cusUrlCheck } = this.state;
     return (
@@ -209,10 +210,10 @@ class HomeScreen extends Component {
               marginTop: '130px',
             }}
           >
-            <Grid item xs={7}>
+            <Grid item xs={10}>
               <h1>Lorem Ipsum</h1>
 
-              <em style={{ lineWrapping: 'true', fontWeight: '100' }}>
+              <em style={{  fontWeight: '100' }}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
                 faucibus erat lacinia magna gravida consequat. Suspendisse risus
                 turpis, egestas non sem ac, ultricies scelerisque est. Proin
@@ -220,17 +221,7 @@ class HomeScreen extends Component {
                 euismod.
               </em>
             </Grid>
-            <Grid item>
-              <img
-                src={illustration}
-                className={useStyles.illustration}
-                alt="illustration"
-                id="illustration"
-                onClick={() => {
-                  window.open('https://dsctiet.tech/');
-                }}
-              />
-            </Grid>
+            <Grid item xs />
           </Grid>
         </Container>
         <Container fixed>
@@ -322,6 +313,7 @@ class HomeScreen extends Component {
 
             <Grid item xs />
           </Grid>
+
           {error && (
             <Snackbar
               open={error}
@@ -364,11 +356,10 @@ class HomeScreen extends Component {
                     inputStyle="Short url"
                     value={this.state.shortUrl}
                   />
-                  <CopyToClipboard text={this.state.shortUrl}>
-                    <Tooltip title="Copy" TransitionProps={{ timeout: 600 }}>
+                  <CopyToClipboard text={this.state.shortUrl} onChange={this.handleCopy}>
+                  <Tooltip title="Copy" TransitionProps={{ timeout: 600 }} onClick = {this.handleCopy}>
                       <FileCopyOutlinedIcon
                         fontSize="medium"
-                        onClick={this.handleCopy}
                         style={{
                           position: 'absolute',
                           elevation: 0,
@@ -380,27 +371,28 @@ class HomeScreen extends Component {
                         }}
                       />
                     </Tooltip>
-                  </CopyToClipboard>
-                  {copyAlert && (
-                    <Snackbar
-                      open={copyAlert}
-                      TransitionComponent={Zoom}
-                      anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'center',
-                      }}
-                      autoHideDuration={6000}
-                      onClose={this.handleClose}
-                    >
-                      <Alert
-                        variant="filled"
-                        severity="info"
-                        onClose={this.handleClose}
-                      >
-                        Copied to Clipboard !
-                      </Alert>
-                    </Snackbar>
-                  )}
+                    </CopyToClipboard>
+                    {copied && (
+                  <Snackbar
+                    open={copied}
+                   TransitionComponent={Zoom}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+              autoHideDuration={6000}
+              onClose={this.handleClose}
+            >
+              <Alert
+                onClose={this.handleClose}
+                severity="info"
+                variant="filled"
+              >
+                Copied to Clipboard !
+              </Alert>
+            </Snackbar>
+          )}
+
                   <Tooltip title="Get QR" TransitionProps={{ timeout: 600 }}>
                     <CropFreeIcon
                       fontSize="medium"
