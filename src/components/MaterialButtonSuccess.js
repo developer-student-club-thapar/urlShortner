@@ -1,10 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
+import { CircularProgress } from '@material-ui/core';
 
 function MaterialButtonSuccess(props) {
   return (
     <Container {...props}>
-      <Shorten>{props.shorten || 'Shorten'}</Shorten>
+      <Shorten>              
+            {props.loading ? (
+                <CircularProgress size={20} />
+            ) : (
+              props.shorten || ('Shorten')
+            )}
+        </Shorten>
     </Container>
   );
 }

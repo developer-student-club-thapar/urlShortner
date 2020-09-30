@@ -4,7 +4,7 @@ import axios from 'axios';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import Grid from '@material-ui/core/Grid';
-import { Container } from '@material-ui/core';
+import { CircularProgress, Container } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import MaterialUnderlineTextbox from '../components/MaterialUnderlineTextbox';
 import MaterialButtonSuccess from '../components/MaterialButtonSuccess';
@@ -53,7 +53,7 @@ class HomeScreen extends Component {
     error: '',
     keyword: '',
     customUrl: '',
-
+    loading: false,
   };
 
   handleKeyword = event => {
@@ -110,6 +110,9 @@ handleCopy = () => {
   };
 
   handleSubmit = async event => {
+    this.setState({
+      loading:true
+    })
     event.preventDefault();
     const api_fetch = process.env.REACT_APP_API_KEY;
 
@@ -192,6 +195,9 @@ handleCopy = () => {
         });
       }
     }
+    this.setState({
+      loading:false
+    })
   };
 
   render() {
@@ -274,8 +280,10 @@ handleCopy = () => {
                   cursor: 'pointer',
                   background: 'rgba(1, 87, 155, 100)',
                 }}
+                loading={this.state.loading}
                 onClick={this.handleSubmit}
-              ></MaterialButtonSuccess>
+              >                            
+</MaterialButtonSuccess>
             </Grid>
             <Grid item xs />
           </Grid>
