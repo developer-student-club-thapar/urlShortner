@@ -14,11 +14,7 @@
 <p>
   <img src="https://1.bp.blogspot.com/-qOQSkWzRsbA/X3ZBlJeMcmI/AAAAAAAAFw4/zLqJ5urjWn43n5zclqEanPLtGtZL_dZiACLcBGAsYHQ/s1200/successful%2Bstartup%2Btriangles%2BFacebook%2B%2B%25281%2529.jpg">
   </p>
-  # Links
-[![Build Status](https://travis-ci.com/developer-student-club-thapar/urlShortner.svg?branch=master)](https://travis-ci.com/github/developer-student-club-thapar/urlShortner)  [![Slack Status](https://img.shields.io/badge/slack-chat-purple.svg?logo=slack)](https://dscthapar-gspatiala.slack.com/join/shared_invite/enQtNzU2MzA2MjcxNzkyLTkwNDRiNWMzYjUzYjNjYjM0M2JhMDgwOTI3MGQwYWU1NzNlNGMxZGVhNzk0MGZiYTI5YzgwZDhiMTk1MjE4M2M) [![GitHub issues](https://img.shields.io/github/issues/developer-student-club-thapar/urlShortner?logo=github)](https://github.com/developer-student-club-thapar/urlShortner/issues)
-![Size](https://github-size-badge.herokuapp.com/developer-student-club-thapar/urlShortner.svg)
-![Website](https://img.shields.io/website?down_color=red&down_message=snap%21&up_color=green&up_message=it%27s%20up%21&url=https%3A%2F%2Furlshort.dsctiet.tech%2F)
-<a> <img src="https://badgen.net/dependabot/developer-student-club-thapar/urlShortner?icon=dependabot" alt="Dependabot Badge"></a>
+  
 
 [![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/developer-student-club-thapar/urlShortner/blob/master/.pre-commit-config.yaml)
 [![License](https://img.shields.io/github/license/developer-student-club-thapar/urlShortner)](https://github.com/developer-student-club-thapar/urlShortner/blob/master/LICENSE)
