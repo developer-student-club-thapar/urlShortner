@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -29,8 +29,25 @@ export default function NavBar() {
   const classes = useStyles();
   const [theme, setTheme] = useState('light');
   const themeToggler = () => {
-    theme === 'light' ? setTheme('dark') : setTheme('light');
+    if(theme === 'light'){
+      setTheme('dark');
+      localStorage.setItem('color-mode','dark');
+    }else{
+      setTheme('light');
+      localStorage.setItem('color-mode','light');
+    };
   };
+
+  useEffect(()=>{
+    let darkVal = localStorage.getItem('color-mode');
+    if(darkVal){
+      setTheme(darkVal);
+    }
+    else{
+      setTheme('light');
+      localStorage.setItem('color-mode','light');
+    }
+  },[]);
 
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
