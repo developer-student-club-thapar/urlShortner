@@ -196,7 +196,7 @@ handleCopy = () => {
       }
     }
     this.setState({
-      loading:false
+      loading: false,
     })
   };
 
