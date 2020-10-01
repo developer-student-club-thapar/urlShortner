@@ -27,11 +27,15 @@ const useStyles = makeStyles(theme => ({
 const logo = require('../assets/images/dsc_logo.png');
 export default function NavBar() {
   const classes = useStyles();
-  const [theme, setTheme] = useState('light');
+let x = localStorage.getItem("whatisstate");
+  if (!x) {
+    x = 'light';
+  }
+  let [theme, setTheme] = useState(x);
   const themeToggler = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
   };
-
+  localStorage.setItem("whatisstate", theme);
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <GlobalStyles />
@@ -67,8 +71,9 @@ export default function NavBar() {
               </Typography>
               <Typography variant="h6" id="url" className={classes.title}>
                 URL Shortener
-                <Switch onClick={themeToggler} color="secondary" />
-              </Typography>
+                <Switch id="switchstate" onClick={themeToggler} color="secondary"/>
+
+                </Typography>
             </Toolbar>
           </Container>
         </AppBar>
