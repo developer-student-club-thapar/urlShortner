@@ -8,7 +8,7 @@ import { Container } from '@material-ui/core';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './globalStyles';
 import { lightTheme, darkTheme } from './Themes';
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     color: 'inherit',
@@ -27,11 +27,18 @@ const useStyles = makeStyles(theme => ({
 const logo = require('../assets/images/dsc_logo.png');
 export default function NavBar() {
   const classes = useStyles();
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(localStorage.getItem('theme-preference'));
+  const [checked, setChecked] = useState(theme === 'light' ? false : true);
   const themeToggler = () => {
-    theme === 'light' ? setTheme('dark') : setTheme('light');
+    if (theme === 'light') {
+      localStorage.setItem('theme-preference', 'dark');
+      setChecked(true);
+    } else {
+      localStorage.setItem('theme-preference', 'light');
+      setChecked(false);
+    }
+    setTheme(localStorage.getItem('theme-preference'));
   };
-
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <GlobalStyles />
@@ -67,7 +74,11 @@ export default function NavBar() {
               </Typography>
               <Typography variant="h6" id="url" className={classes.title}>
                 URL Shortener
-                <Switch onClick={themeToggler} color="secondary" />
+                <Switch
+                  onClick={themeToggler}
+                  color="secondary"
+                  checked={checked}
+                />
               </Typography>
             </Toolbar>
           </Container>
