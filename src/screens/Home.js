@@ -282,8 +282,7 @@ handleCopy = () => {
                 }}
                 loading={this.state.loading}
                 onClick={this.handleSubmit}
-              >                            
-</MaterialButtonSuccess>
+              />
             </Grid>
             <Grid item xs />
           </Grid>
