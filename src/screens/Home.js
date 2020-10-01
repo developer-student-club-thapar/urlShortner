@@ -111,7 +111,7 @@ handleCopy = () => {
 
   handleSubmit = async event => {
     this.setState({
-      loading:true
+      loading: true,
     })
     event.preventDefault();
     const api_fetch = process.env.REACT_APP_API_KEY;
