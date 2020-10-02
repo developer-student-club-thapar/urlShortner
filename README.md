@@ -47,8 +47,13 @@ We follow a systematic Git Workflow -
 - Write clear meaningful git commit messages (Do read [this](http://chris.beams.io/posts/git-commit/)).
 - Make sure your PR's description contains GitHub's special keyword references that automatically close the related issue when the PR is merged. (Check [this](https://github.com/blog/1506-closing-issues-via-pull-requests) for more info)
 - When you make very very minor changes to a PR of yours (like for example fixing a failing Travis build or some small style corrections or minor changes requested by reviewers) make sure you squash your commits afterward so that you don't have an absurd number of commits for a very small fix. (Learn how to squash at [here](https://davidwalsh.name/squash-commits-git))
+- Make sure that your system has pre-commit install and you run it before pushing code on the PR. These are the steps to follow -
+    - `pip install pre-commit`
+    - `pre-commit install`
+- Failing to do so will result in failure of Travis tests.
 - When you're submitting a PR for a UI-related issue, it would be really awesome if you add a screenshot of your change or a link to a deployment where it can be tested out along with your PR. It makes it very easy for the reviewers and you'll also get reviews quicker.
+
 
 ### Note
 
-- Use only `npm add package_name` to add new packages to the frontend and backend (respective package.json files).
+- Use only `npm add package_name` to add new packages to the `package.json`.
