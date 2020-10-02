@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
+import Box from '@material-ui/core/Box';
+import Hidden from '@material-ui/core/Hidden';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { Switch } from '@material-ui/core';
@@ -15,15 +17,26 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'inherit',
   },
   title: {
-    flexGrow: 1,
-    marginRight: theme.spacing(5),
+    flex: 1,
+    flexGrow: 1, 
+    display: 'flex'
+  },
+  titleCenter: {
+    display: 'flex',
+    flex: '1 1 0',
+    justifyContent: 'center',
+    whiteSpace: 'nowrap'
   },
   logo: {
-    marginLeft: theme.spacing(2),
     height: '30px',
     objectFit: 'contain',
     cursor: 'pointer',
   },
+  toggle: {
+    display: 'flex',
+    flex: 1,
+    justifyContent: 'flex-end'
+  }
 }));
 const logo = require('../assets/images/dsc_logo.png');
 export default function NavBar() {
@@ -47,30 +60,37 @@ export default function NavBar() {
         >
           <Container fixed>
             <Toolbar>
-              <img
-                src={logo}
-                className={classes.logo}
-                alt="logo"
-                id="logo"
-                onClick={() => {
-                  window.open('https://dsctiet.tech/');
-                }}
-              />
-              <Typography
-                variant="h7"
-                id="dsc"
-                className={classes.title}
-                onClick={() => {
-                  window.open('https://dsctiet.tech/');
-                }}
-              >
-                {' '}
-                &nbsp; DSC TIET
-              </Typography>
-              <Typography variant="h6" id="url" className={classes.title}>
-                URL Shortener
+              <Box className={classes.title}>
+                <img
+                  src={logo}
+                  className={classes.logo}
+                  alt="logo"
+                  id="logo"
+                  onClick={() => {
+                    window.open('https://dsctiet.tech/');
+                  }}
+                />
+                <Hidden smDown>
+                  <Typography
+                    variant="h6"
+                    id="dsc"
+                    onClick={() => {
+                      window.open('https://dsctiet.tech/');
+                    }}
+                  >
+                    {' '}
+                    &nbsp; DSC TIET
+                  </Typography>
+                </Hidden>
+              </Box>
+              <Box className={classes.titleCenter}>
+                <Typography variant="h6" id="url">
+                  URL Shortener
+                </Typography>
+              </Box>
+              <Box className={classes.toggle}>
                 <Switch onClick={themeToggler} color="secondary" />
-              </Typography>
+              </Box>
             </Toolbar>
           </Container>
         </AppBar>
