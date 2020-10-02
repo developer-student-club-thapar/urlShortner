@@ -272,7 +272,7 @@ handleCopy = () => {
                   position: 'absolute',
                   overflow: 'hidden',
                   cursor: 'pointer',
-                  boxShadow: `10px 20px 30px #9E9E9E`,
+                  boxShadow: `10px 20px 29px #9E9E9E`,
                   background: 'rgba(1, 87, 15, 100)',
                 }}
                 onClick={this.handleSubmit}
