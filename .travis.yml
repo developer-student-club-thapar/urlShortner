@@ -23,10 +23,10 @@ jobs:
     # Need to check integrity of the backend code
 
     #This test helps us to check standard linting of the codebase
-    - language: python
-      python: '3.7'
-      cache: pip
-      install:
-        - pip install pre-commit
-      script:
-        - pre-commit run --all-files
+#     - language: python
+#       python: '3.7'
+#       cache: pip
+#       install:
+#         - pip install pre-commit
+#       script:
+#         - pre-commit run --all-files
