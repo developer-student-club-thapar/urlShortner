@@ -27,9 +27,10 @@ const useStyles = makeStyles(theme => ({
 const logo = require('../assets/images/dsc_logo.png');
 export default function NavBar() {
   const classes = useStyles();
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState( localStorage.getItem('selectedTheme') === 'dark' ? 'dark' : 'light' );
   const themeToggler = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
+	  localStorage.setItem("selectedTheme", theme);
   };
 
   return (
