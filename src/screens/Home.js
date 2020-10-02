@@ -56,12 +56,6 @@ class HomeScreen extends Component {
 
   };
 
-  handleKeyword = event => {
-    this.setState({
-      keyword: event.target.value,
-    }); // console.log(event.target.value);
-  };
-
   handleChange = event => {
     this.setState({
       longUrl: event.target.value,

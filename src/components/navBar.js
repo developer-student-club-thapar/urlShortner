@@ -12,6 +12,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     color: 'inherit',
+    backgroundColor: 'inherit',
   },
   title: {
     flexGrow: 1,
