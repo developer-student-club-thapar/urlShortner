@@ -66,7 +66,7 @@ export default function NavBar() {
                 &nbsp; DSC TIET
               </Typography>
               <Typography variant="h6" id="url" className={classes.title}>
-                {theme == 'light' ? 'Dark Mode' : 'Light Mode'}
+                {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
                 <Switch onClick={themeToggler} color="secondary" />
               </Typography>
             </Toolbar>
