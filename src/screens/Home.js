@@ -211,7 +211,7 @@ handleCopy = () => {
             }}
           >
             <Grid item xs={10}>
-              <h1>Lorem Ipsum</h1>
+              <h1>Url Shortner</h1>
 
               <em style={{  fontWeight: '100' }}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
