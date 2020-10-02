@@ -122,6 +122,10 @@ handleCopy = () => {
         error: "URL can't be empty",
         submitButton: false,
       });
+    } else if(/^http(s)?:\/\//.test(target) === false) {
+      this.setState({
+        longUrl: `http://${target}`
+      });
     } else if (!validUrl.isUri(target)) {
       this.setState({
         error: 'Invalid URL!',
