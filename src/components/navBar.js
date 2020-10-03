@@ -5,6 +5,7 @@ import Box from '@material-ui/core/Box';
 import Hidden from '@material-ui/core/Hidden';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import GitHubRibbon from 'react-github-ribbons';
 import { Switch } from '@material-ui/core';
 import { Container } from '@material-ui/core';
 import { ThemeProvider } from 'styled-components';
@@ -61,6 +62,9 @@ export default function NavBar() {
           id="navbar"
         >
           <Container fixed>
+            <div>
+              <GitHubRibbon href="https://github.com/developer-student-club-thapar/urlShortner" />
+            </div>
             <Toolbar>
               <Box className={classes.title}>
                 <img

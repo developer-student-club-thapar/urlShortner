@@ -9,6 +9,11 @@ newIssueWelcomeComment: >
 # Comment to be posted to on PRs from first time contributors in your repository
 newPRWelcomeComment: >
   Thanks for opening this pull request! Make sure you are following our contribution guidelines and the pull request is associated with an issue.
+  Also, if your Travis tests are failing, make sure you follow the stated steps - 
+  - `pip install pre-commit` to install pre-commit on your system
+  - Navigate to the project folder and run  `pre-commit install`
+  - Correct all the suggested changes given by pre-commit and push the code
+
 
 # Configuration for first-pr-merge - https://github.com/behaviorbot/first-pr-merge
 

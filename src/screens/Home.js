@@ -208,14 +208,15 @@ class HomeScreen extends Component {
             }}
           >
             <Grid item xs={10}>
-              <h1>Lorem Ipsum</h1>
+              <h1>Shorter Links , Less Hassle , More Productivity</h1>
 
               <em style={{ fontWeight: '100' }}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-                faucibus erat lacinia magna gravida consequat. Suspendisse risus
-                turpis, egestas non sem ac, ultricies scelerisque est. Proin
-                imperdiet tincidunt rutrum. Nunc semper congue ligula dignissim
-                euismod.
+                Manage and Personalize your tedious links to short and concise
+                ones with this astonishing URL Shortening Service made by the
+                Developer Student Clubs powered by Google Developers. Get more
+                work done , without any hassle of maintaining those long links,
+                and get your links shortened and easy to use with our simple
+                URL-Shortener Service.
               </em>
             </Grid>
             <Grid item xs />
