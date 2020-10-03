@@ -14,7 +14,6 @@ newPRWelcomeComment: >
   - Navigate to the project folder and run  `pre-commit install`
   - Correct all the suggested changes given by pre-commit and push the code
 
-
 # Configuration for first-pr-merge - https://github.com/behaviorbot/first-pr-merge
 
 # Comment to be posted to on pull requests merged by a first time user
