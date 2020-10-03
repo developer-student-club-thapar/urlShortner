@@ -209,14 +209,11 @@ handleCopy = () => {
             }}
           >
             <Grid item xs={10}>
-              <h1>Lorem Ipsum</h1>
+              <h1>A fast and easy to use URL shortener</h1>
 
               <em style={{  fontWeight: '100' }}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-                faucibus erat lacinia magna gravida consequat. Suspendisse risus
-                turpis, egestas non sem ac, ultricies scelerisque est. Proin
-                imperdiet tincidunt rutrum. Nunc semper congue ligula dignissim
-                euismod.
+                Replace long URLs with short and clean looking URLs that are readable and trackable. 
+                Shorter links boost results and increrase click-through rates.
               </em>
             </Grid>
             <Grid item xs />
