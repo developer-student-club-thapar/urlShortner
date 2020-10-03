@@ -18,14 +18,14 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flex: 1,
-    flexGrow: 1, 
-    display: 'flex'
+    flexGrow: 1,
+    display: 'flex',
   },
   titleCenter: {
     display: 'flex',
     flex: '1 1 0',
     justifyContent: 'center',
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
   },
   logo: {
     height: '30px',
@@ -35,16 +35,18 @@ const useStyles = makeStyles(theme => ({
   toggle: {
     display: 'flex',
     flex: 1,
-    justifyContent: 'flex-end'
-  }
+    justifyContent: 'flex-end',
+  },
 }));
 const logo = require('../assets/images/dsc_logo.png');
 export default function NavBar() {
   const classes = useStyles();
-  const [theme, setTheme] = useState( localStorage.getItem('selectedTheme') === 'dark' ? 'dark' : 'light' );
+  const [theme, setTheme] = useState(
+    localStorage.getItem('selectedTheme') === 'dark' ? 'dark' : 'light',
+  );
   const themeToggler = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
-	  localStorage.setItem("selectedTheme", theme);
+    localStorage.setItem('selectedTheme', theme);
   };
 
   return (

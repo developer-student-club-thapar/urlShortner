@@ -53,7 +53,6 @@ class HomeScreen extends Component {
     error: '',
     keyword: '',
     customUrl: '',
-
   };
 
   handleChange = event => {
@@ -69,11 +68,11 @@ class HomeScreen extends Component {
     // console.log(event.target.value);
   };
 
-handleCopy = () => {
-  this.setState({
-    copied: true,
-  });
-};
+  handleCopy = () => {
+    this.setState({
+      copied: true,
+    });
+  };
   handleQr = () => {
     this.setState({
       qrButton: true,
@@ -93,13 +92,13 @@ handleCopy = () => {
     });
   };
 
-  handleClose = (reason) => {
+  handleClose = reason => {
     if (reason === 'clickaway') {
       return;
     }
     this.setState({
       error: '',
-      copied:false,
+      copied: false,
     });
   };
 
@@ -116,9 +115,9 @@ handleCopy = () => {
         error: "URL can't be empty",
         submitButton: false,
       });
-    } else if(/^http(s)?:\/\//.test(target) === false) {
+    } else if (/^http(s)?:\/\//.test(target) === false) {
       this.setState({
-        longUrl: `http://${target}`
+        longUrl: `http://${target}`,
       });
     } else if (!validUrl.isUri(target)) {
       this.setState({
@@ -211,7 +210,7 @@ handleCopy = () => {
             <Grid item xs={10}>
               <h1>Lorem Ipsum</h1>
 
-              <em style={{  fontWeight: '100' }}>
+              <em style={{ fontWeight: '100' }}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
                 faucibus erat lacinia magna gravida consequat. Suspendisse risus
                 turpis, egestas non sem ac, ultricies scelerisque est. Proin
@@ -354,8 +353,15 @@ handleCopy = () => {
                     inputStyle="Short url"
                     value={this.state.shortUrl}
                   />
-                  <CopyToClipboard text={this.state.shortUrl} onChange={this.handleCopy}>
-                  <Tooltip title="Copy" TransitionProps={{ timeout: 600 }} onClick = {this.handleCopy}>
+                  <CopyToClipboard
+                    text={this.state.shortUrl}
+                    onChange={this.handleCopy}
+                  >
+                    <Tooltip
+                      title="Copy"
+                      TransitionProps={{ timeout: 600 }}
+                      onClick={this.handleCopy}
+                    >
                       <FileCopyOutlinedIcon
                         fontSize="medium"
                         style={{
@@ -369,27 +375,27 @@ handleCopy = () => {
                         }}
                       />
                     </Tooltip>
-                    </CopyToClipboard>
-                    {copied && (
-                  <Snackbar
-                    open={copied}
-                   TransitionComponent={Zoom}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'center',
-              }}
-              autoHideDuration={6000}
-              onClose={this.handleClose}
-            >
-              <Alert
-                onClose={this.handleClose}
-                severity="info"
-                variant="filled"
-              >
-                Copied to Clipboard !
-              </Alert>
-            </Snackbar>
-          )}
+                  </CopyToClipboard>
+                  {copied && (
+                    <Snackbar
+                      open={copied}
+                      TransitionComponent={Zoom}
+                      anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'center',
+                      }}
+                      autoHideDuration={6000}
+                      onClose={this.handleClose}
+                    >
+                      <Alert
+                        onClose={this.handleClose}
+                        severity="info"
+                        variant="filled"
+                      >
+                        Copied to Clipboard !
+                      </Alert>
+                    </Snackbar>
+                  )}
 
                   <Tooltip title="Get QR" TransitionProps={{ timeout: 600 }}>
                     <CropFreeIcon
