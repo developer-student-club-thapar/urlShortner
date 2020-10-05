@@ -1,0 +1,16 @@
+node_modules
+*.md
+.gitignore
+LICENSE
+*.yaml
+*.yml 
+.github
+Dockerfile
+cypress*
+bash.exe.stackdump
+markdownlint.json
+.prettierignore
+.prettierrc.js
+.travis.yml
+Pipfile.lock
+Pipfile
