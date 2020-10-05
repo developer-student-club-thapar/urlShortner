@@ -36,7 +36,7 @@
     "react-script-tag": "^1.1.2",
     "react-scripts": "^3.4.3",
     "react-transition-group": "^4.4.1",
-    "semantic-ui-react": "^0.88.2",
+    "semantic-ui-react": "^2.0.0",
     "styled-components": "^5.1.1",
     "valid-url": "^1.0.9"
   },
