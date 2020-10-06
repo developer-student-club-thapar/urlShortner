@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Box from '@material-ui/core/Box';
@@ -43,12 +43,27 @@ const logo = require('../assets/images/dsc_logo.png');
 export default function NavBar() {
   const classes = useStyles();
   const [theme, setTheme] = useState(
-    localStorage.getItem('selectedTheme') === 'dark' ? 'dark' : 'light',
+    localStorage.getItem('selected-theme') === 'dark' ? 'dark' : 'light',
   );
   const themeToggler = () => {
-    theme === 'light' ? setTheme('dark') : setTheme('light');
-    localStorage.setItem('selectedTheme', theme);
+    if (theme === 'light') {
+      setTheme('dark');
+      localStorage.setItem('selected-theme', 'dark');
+    } else {
+      setTheme('light');
+      localStorage.setItem('selected-theme', 'light');
+    }
   };
+
+  useEffect(() => {
+    let darkVal = localStorage.getItem('selected-theme');
+    if (darkVal) {
+      setTheme(darkVal);
+    } else {
+      setTheme('light');
+      localStorage.setItem('selected-theme', 'light');
+    }
+  }, []);
 
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
