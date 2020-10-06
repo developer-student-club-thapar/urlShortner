@@ -43,28 +43,27 @@ const logo = require('../assets/images/dsc_logo.png');
 export default function NavBar() {
   const classes = useStyles();
   const [theme, setTheme] = useState(
-    localStorage.getItem('color-mode') === 'dark' ? 'dark' : 'light',
+    localStorage.getItem('selected-theme') === 'dark' ? 'dark' : 'light',
   );
   const themeToggler = () => {
-    if(theme === 'light'){
+    if (theme === 'light') {
       setTheme('dark');
-      localStorage.setItem('color-mode','dark');
-    }else{
+      localStorage.setItem('selected-theme', 'dark');
+    } else {
       setTheme('light');
-      localStorage.setItem('color-mode','light');
-    };
+      localStorage.setItem('selected-theme', 'light');
+    }
   };
 
-  useEffect(()=>{
-    let darkVal = localStorage.getItem('color-mode');
-    if(darkVal){
+  useEffect(() => {
+    let darkVal = localStorage.getItem('selected-theme');
+    if (darkVal) {
       setTheme(darkVal);
-    }
-    else{
+    } else {
       setTheme('light');
-      localStorage.setItem('color-mode','light');
+      localStorage.setItem('selected-theme', 'light');
     }
-  },[]);
+  }, []);
 
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
