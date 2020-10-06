@@ -50,3 +50,7 @@
   color: black;
   background-image: linear-gradient(to bottom left, #b6b4c2, #aac9ce);
 }
+
+.App {
+  background-color: inherit;
+}

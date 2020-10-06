@@ -53,13 +53,6 @@ class HomeScreen extends Component {
     error: '',
     keyword: '',
     customUrl: '',
-
-  };
-
-  handleKeyword = event => {
-    this.setState({
-      keyword: event.target.value,
-    }); // console.log(event.target.value);
   };
 
   handleChange = event => {
@@ -75,11 +68,11 @@ class HomeScreen extends Component {
     // console.log(event.target.value);
   };
 
-handleCopy = () => {
-  this.setState({
-    copied: true,
-  });
-};
+  handleCopy = () => {
+    this.setState({
+      copied: true,
+    });
+  };
   handleQr = () => {
     this.setState({
       qrButton: true,
@@ -99,13 +92,13 @@ handleCopy = () => {
     });
   };
 
-  handleClose = (reason) => {
+  handleClose = reason => {
     if (reason === 'clickaway') {
       return;
     }
     this.setState({
       error: '',
-      copied:false,
+      copied: false,
     });
   };
 
@@ -121,6 +114,10 @@ handleCopy = () => {
       this.setState({
         error: "URL can't be empty",
         submitButton: false,
+      });
+    } else if (/^http(s)?:\/\//.test(target) === false) {
+      this.setState({
+        longUrl: `http://${target}`,
       });
     } else if (!validUrl.isUri(target)) {
       this.setState({
@@ -211,14 +208,15 @@ handleCopy = () => {
             }}
           >
             <Grid item xs={10}>
-              <h1>Lorem Ipsum</h1>
+              <h1>Shorter Links , Less Hassle , More Productivity</h1>
 
-              <em style={{  fontWeight: '100' }}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-                faucibus erat lacinia magna gravida consequat. Suspendisse risus
-                turpis, egestas non sem ac, ultricies scelerisque est. Proin
-                imperdiet tincidunt rutrum. Nunc semper congue ligula dignissim
-                euismod.
+              <em style={{ fontWeight: '100' }}>
+                Manage and Personalize your tedious links to short and concise
+                ones with this astonishing URL Shortening Service made by the
+                Developer Student Clubs powered by Google Developers. Get more
+                work done , without any hassle of maintaining those long links,
+                and get your links shortened and easy to use with our simple
+                URL-Shortener Service.
               </em>
             </Grid>
             <Grid item xs />
@@ -356,8 +354,15 @@ handleCopy = () => {
                     inputStyle="Short url"
                     value={this.state.shortUrl}
                   />
-                  <CopyToClipboard text={this.state.shortUrl} onChange={this.handleCopy}>
-                  <Tooltip title="Copy" TransitionProps={{ timeout: 600 }} onClick = {this.handleCopy}>
+                  <CopyToClipboard
+                    text={this.state.shortUrl}
+                    onChange={this.handleCopy}
+                  >
+                    <Tooltip
+                      title="Copy"
+                      TransitionProps={{ timeout: 600 }}
+                      onClick={this.handleCopy}
+                    >
                       <FileCopyOutlinedIcon
                         fontSize="medium"
                         style={{
@@ -371,27 +376,27 @@ handleCopy = () => {
                         }}
                       />
                     </Tooltip>
-                    </CopyToClipboard>
-                    {copied && (
-                  <Snackbar
-                    open={copied}
-                   TransitionComponent={Zoom}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'center',
-              }}
-              autoHideDuration={6000}
-              onClose={this.handleClose}
-            >
-              <Alert
-                onClose={this.handleClose}
-                severity="info"
-                variant="filled"
-              >
-                Copied to Clipboard !
-              </Alert>
-            </Snackbar>
-          )}
+                  </CopyToClipboard>
+                  {copied && (
+                    <Snackbar
+                      open={copied}
+                      TransitionComponent={Zoom}
+                      anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'center',
+                      }}
+                      autoHideDuration={6000}
+                      onClose={this.handleClose}
+                    >
+                      <Alert
+                        onClose={this.handleClose}
+                        severity="info"
+                        variant="filled"
+                      >
+                        Copied to Clipboard !
+                      </Alert>
+                    </Snackbar>
+                  )}
 
                   <Tooltip title="Get QR" TransitionProps={{ timeout: 600 }}>
                     <CropFreeIcon
