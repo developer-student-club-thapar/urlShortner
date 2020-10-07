@@ -4,7 +4,7 @@ import axios from 'axios';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import Grid from '@material-ui/core/Grid';
-import { Container } from '@material-ui/core';
+import { Container, Select } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import MaterialUnderlineTextbox from '../components/MaterialUnderlineTextbox';
 import MaterialButtonSuccess from '../components/MaterialButtonSuccess';
@@ -51,7 +51,7 @@ class HomeScreen extends Component {
     longUrl: '',
     shortUrl: '',
     error: '',
-    keyword: '',
+    keyword: 'Domain',
     customUrl: '',
   };
 
@@ -240,9 +240,8 @@ class HomeScreen extends Component {
               ></TextField>
             </Grid>
             <Grid item xs={3}>
-              <TextField
-                select
-                label="Domain"
+              <Select
+                native
                 style={{
                   height: 62,
                   position: 'absolute',
@@ -255,12 +254,13 @@ class HomeScreen extends Component {
                 onChange={this.handleKeyword}
                 variant="filled"
               >
+                <option disabled>Domain</option>
                 {keywords.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
+                  <option key={option.value} value={option.value}>
                     {option.label}
-                  </MenuItem>
+                  </option>
                 ))}{' '}
-              </TextField>
+              </Select>
             </Grid>
             <Grid item xs={3}>
               <MaterialButtonSuccess
