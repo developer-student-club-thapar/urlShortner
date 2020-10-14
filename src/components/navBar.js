@@ -72,7 +72,7 @@ export default function NavBar() {
         <AppBar
           position="fixed"
           color="inherit"
-          style={{ backgroundColor: 'inherit' }}
+          style={{ backgroundColor: 'inherit', paddingRight: 0 }}
           className="fill"
           id="navbar"
         >
