@@ -224,27 +224,22 @@ class HomeScreen extends Component {
         <Container fixed>
           <Grid container spacing={4} style={{ marginTop: '200px' }}>
             <Grid item xs />
-            <Grid item xs={5}>
+            <Grid item xs={6}>
               <TextField
                 label="Enter the URL"
                 style={{
-                  height: 62,
-                  width: '34%',
-                  position: 'absolute',
                   background: 'rgba(230, 230, 230, 0.88)',
                 }}
                 variant="filled"
                 value={this.state.longUrl}
                 onChange={this.handleChange}
+                fullWidth={true}
               ></TextField>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={2}>
               <Select
                 native
                 style={{
-                  height: 62,
-                  position: 'absolute',
-                  width: '11%',
                   background: 'rgba(230, 230, 230, 0.88)',
                   disableUnderline: true,
                 }}
@@ -252,6 +247,7 @@ class HomeScreen extends Component {
                 value={this.state.keyword}
                 onChange={this.handleKeyword}
                 variant="filled"
+                fullWidth={true}
               >
                 <option disabled>Domain</option>
                 {keywords.map(option => (
