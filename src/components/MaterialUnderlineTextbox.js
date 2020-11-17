@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 function MaterialUnderlineTextbox(props) {
   return (
     <Container {...props}>
@@ -17,14 +18,12 @@ const Container = styled.div`
   border-bottom-width: 1px;
   border-color: #121212;
 
-  background-color: rgba(170, 201, 206, 1);
   flex-direction: row;
   align-items: center;
 `;
 
 const InputStyle = styled.input`
   font-family: Roboto;
-  color: rgba(0, 0, 0, 0.7);
   padding-right: 5px;
   font-size: 20px;
   align-self: stretch;
@@ -34,7 +33,6 @@ const InputStyle = styled.input`
   padding-left: 40px;
   padding-bottom: 16px;
   border: none;
-  background: transparent;
   flex-direction: column;
 `;
 

@@ -229,9 +229,9 @@ class HomeScreen extends Component {
                 label="Enter the URL"
                 style={{
                   height: 62,
-                  width: '34%',
+                  width: '32%',
                   position: 'absolute',
-                  background: 'rgba(230, 230, 230, 0.88)',
+                  backgroundColor: 'white',
                 }}
                 variant="filled"
                 value={this.state.longUrl}
@@ -244,8 +244,8 @@ class HomeScreen extends Component {
                 style={{
                   height: 62,
                   position: 'absolute',
+                  backgroundColor: 'white',
                   width: '11%',
-                  background: 'rgba(230, 230, 230, 0.88)',
                   disableUnderline: true,
                 }}
                 required
@@ -299,8 +299,8 @@ class HomeScreen extends Component {
                       position: 'absolute',
                       width: '15%',
                       marginLeft: '60px',
-                      background: 'rgba(230, 230, 230, 0.88)',
                       disableUnderline: true,
+                      backgroundColor: 'white',                      
                     }}
                     variant="filled"
                   ></TextField>
@@ -349,8 +349,8 @@ class HomeScreen extends Component {
                       borderWidth: 1,
                       borderColor: 'rgba(255,255,255,1)',
                       borderStyle: 'solid',
-                    }}
-                    inputStyle="Short url"
+                }}
+                inputStyle="Short url"
                     value={this.state.shortUrl}
                   />
                   <CopyToClipboard
