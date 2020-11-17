@@ -110,7 +110,7 @@ export default function NavBar() {
                 </Typography>
               </Box>
               <Box className={classes.toggle}>
-                <Switch onClick={themeToggler} color="secondary" />
+                <Switch onClick={themeToggler} color="primary" />
               </Box>
             </Toolbar>
           </Container>
