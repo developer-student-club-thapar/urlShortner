@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "generatedAt": "2026-11-10T13:56:47.692Z",
+  "repo": {
+    "connectorId": 5,
+    "repoSlug": "sakshamceoo/urlShortner",
+    "baseBranch": "master"
+  },
+  "team": {
+    "assetId": 199,
+    "displayId": "TM-1",
+    "name": "KB-TEST"
+  },
+  "tree": [
+    {
+      "assetId": 207,
+      "displayId": "TC-3",
+      "name": "qwwqewqeq",
+      "kind": "test-case",
+      "repoPath": "TC-3-qwwqewqeq.spec.ts"
+    },
+    {
+      "assetId": 205,
+      "displayId": "TC-1",
+      "name": "sdsad",
+      "kind": "test-case",
+      "repoPath": "TC-1-sdsad.spec.ts"
+    }
+  ],
+  "files": [
+    {
+      "assetId": 205,
+      "assetKind": "test-case",
+      "displayId": "TC-1",
+      "name": "sdsad",
+      "repoPath": "TC-1-sdsad.spec.ts",
+      "parentAssetId": 199
+    },
+    {
+      "assetId": 207,
+      "assetKind": "test-case",
+      "displayId": "TC-3",
+      "name": "qwwqewqeq",
+      "repoPath": "TC-3-qwwqewqeq.spec.ts",
+      "parentAssetId": 199
+    }
+  ]
+}
