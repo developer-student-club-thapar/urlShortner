@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "generatedAt": "2026-11-10T13:51:14.493Z",
+  "repo": {
+    "connectorId": 5,
+    "repoSlug": "sakshamceoo/urlShortner",
+    "baseBranch": "master"
+  },
+  "team": {
+    "assetId": 199,
+    "displayId": "TM-1",
+    "name": "KB-TEST"
+  },
+  "tree": [
+    {
+      "assetId": 205,
+      "displayId": "TC-1",
+      "name": "sdsad",
+      "kind": "test-case",
+      "repoPath": "TC-1-sdsad.spec.ts"
+    }
+  ],
+  "files": [
+    {
+      "assetId": 205,
+      "assetKind": "test-case",
+      "displayId": "TC-1",
+      "name": "sdsad",
+      "repoPath": "TC-1-sdsad.spec.ts",
+      "parentAssetId": 199
+    }
+  ]
+}
